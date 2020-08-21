@@ -16,12 +16,14 @@
 		75AE70F724EFE5EA0026D183 /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AE70F524EFE5EA0026D183 /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AE70FA24EFE5EA0026D183 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE70F324EFE5EA0026D183 /* Domain.framework */; };
 		75AE70FB24EFE5EA0026D183 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE70F324EFE5EA0026D183 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		75AE710924EFE61B0026D183 /* DataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AE710724EFE61B0026D183 /* DataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AE710C24EFE61B0026D183 /* DataSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE710524EFE61B0026D183 /* DataSource.framework */; };
 		75AE710D24EFE61B0026D183 /* DataSource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE710524EFE61B0026D183 /* DataSource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		75AE711A24EFE8E80026D183 /* Presentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AE711824EFE8E80026D183 /* Presentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75AE711D24EFE8E80026D183 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE711624EFE8E80026D183 /* Presentation.framework */; };
 		75AE711E24EFE8E80026D183 /* Presentation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE711624EFE8E80026D183 /* Presentation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		75AE712B24EFECE40026D183 /* DataStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 75AE712924EFECE40026D183 /* DataStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75AE712E24EFECE40026D183 /* DataStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE712724EFECE40026D183 /* DataStore.framework */; };
+		75AE712F24EFECE40026D183 /* DataStore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE712724EFECE40026D183 /* DataStore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,13 @@
 			remoteGlobalIDString = 75AE711524EFE8E80026D183;
 			remoteInfo = Presentation;
 		};
+		75AE712C24EFECE40026D183 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7598DD2724ED4C1D00147B3D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 75AE712624EFECE40026D183;
+			remoteInfo = DataStore;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +66,7 @@
 			files = (
 				75AE70FB24EFE5EA0026D183 /* Domain.framework in Embed Frameworks */,
 				75AE710D24EFE61B0026D183 /* DataSource.framework in Embed Frameworks */,
+				75AE712F24EFECE40026D183 /* DataStore.framework in Embed Frameworks */,
 				75AE711E24EFE8E80026D183 /* Presentation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -77,11 +87,12 @@
 		75AE70F524EFE5EA0026D183 /* Domain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Domain.h; sourceTree = "<group>"; };
 		75AE70F624EFE5EA0026D183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75AE710524EFE61B0026D183 /* DataSource.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataSource.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		75AE710724EFE61B0026D183 /* DataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
-		75AE710824EFE61B0026D183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75AE711624EFE8E80026D183 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AE711824EFE8E80026D183 /* Presentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Presentation.h; sourceTree = "<group>"; };
 		75AE711924EFE8E80026D183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75AE712724EFECE40026D183 /* DataStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DataStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		75AE712924EFECE40026D183 /* DataStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataStore.h; sourceTree = "<group>"; };
+		75AE712A24EFECE40026D183 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +102,7 @@
 			files = (
 				75AE70FA24EFE5EA0026D183 /* Domain.framework in Frameworks */,
 				75AE710C24EFE61B0026D183 /* DataSource.framework in Frameworks */,
+				75AE712E24EFECE40026D183 /* DataStore.framework in Frameworks */,
 				75AE711D24EFE8E80026D183 /* Presentation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +128,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75AE712424EFECE40026D183 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -124,8 +143,8 @@
 			children = (
 				7598DD3124ED4C1E00147B3D /* smart-novel-ios */,
 				75AE70F424EFE5EA0026D183 /* Domain */,
-				75AE710624EFE61B0026D183 /* DataSource */,
 				75AE711724EFE8E80026D183 /* Presentation */,
+				75AE712824EFECE40026D183 /* DataStore */,
 				7598DD3024ED4C1E00147B3D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -137,6 +156,7 @@
 				75AE70F324EFE5EA0026D183 /* Domain.framework */,
 				75AE710524EFE61B0026D183 /* DataSource.framework */,
 				75AE711624EFE8E80026D183 /* Presentation.framework */,
+				75AE712724EFECE40026D183 /* DataStore.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,15 +184,6 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		75AE710624EFE61B0026D183 /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				75AE710724EFE61B0026D183 /* DataSource.h */,
-				75AE710824EFE61B0026D183 /* Info.plist */,
-			);
-			path = DataSource;
-			sourceTree = "<group>";
-		};
 		75AE711724EFE8E80026D183 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +191,15 @@
 				75AE711924EFE8E80026D183 /* Info.plist */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		75AE712824EFECE40026D183 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				75AE712924EFECE40026D183 /* DataStore.h */,
+				75AE712A24EFECE40026D183 /* Info.plist */,
+			);
+			path = DataStore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +217,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75AE710924EFE61B0026D183 /* DataSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +225,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				75AE711A24EFE8E80026D183 /* Presentation.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75AE712224EFECE40026D183 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75AE712B24EFECE40026D183 /* DataStore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +254,7 @@
 				75AE70F924EFE5EA0026D183 /* PBXTargetDependency */,
 				75AE710B24EFE61B0026D183 /* PBXTargetDependency */,
 				75AE711C24EFE8E80026D183 /* PBXTargetDependency */,
+				75AE712D24EFECE40026D183 /* PBXTargetDependency */,
 			);
 			name = "smart-novel-ios";
 			productName = "smart-novel-ios";
@@ -287,6 +315,24 @@
 			productReference = 75AE711624EFE8E80026D183 /* Presentation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		75AE712624EFECE40026D183 /* DataStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75AE713024EFECE40026D183 /* Build configuration list for PBXNativeTarget "DataStore" */;
+			buildPhases = (
+				75AE712224EFECE40026D183 /* Headers */,
+				75AE712324EFECE40026D183 /* Sources */,
+				75AE712424EFECE40026D183 /* Frameworks */,
+				75AE712524EFECE40026D183 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DataStore;
+			productName = DataStore;
+			productReference = 75AE712724EFECE40026D183 /* DataStore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -308,6 +354,9 @@
 					75AE711524EFE8E80026D183 = {
 						CreatedOnToolsVersion = 11.5;
 					};
+					75AE712624EFECE40026D183 = {
+						CreatedOnToolsVersion = 11.5;
+					};
 				};
 			};
 			buildConfigurationList = 7598DD2A24ED4C1D00147B3D /* Build configuration list for PBXProject "smart-novel-ios" */;
@@ -327,6 +376,7 @@
 				75AE70F224EFE5EA0026D183 /* Domain */,
 				75AE710424EFE61B0026D183 /* DataSource */,
 				75AE711524EFE8E80026D183 /* Presentation */,
+				75AE712624EFECE40026D183 /* DataStore */,
 			);
 		};
 /* End PBXProject section */
@@ -357,6 +407,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		75AE711424EFE8E80026D183 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75AE712524EFECE40026D183 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -397,6 +454,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		75AE712324EFECE40026D183 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -414,6 +478,11 @@
 			isa = PBXTargetDependency;
 			target = 75AE711524EFE8E80026D183 /* Presentation */;
 			targetProxy = 75AE711B24EFE8E80026D183 /* PBXContainerItemProxy */;
+		};
+		75AE712D24EFECE40026D183 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 75AE712624EFECE40026D183 /* DataStore */;
+			targetProxy = 75AE712C24EFECE40026D183 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -749,6 +818,60 @@
 			};
 			name = Release;
 		};
+		75AE713124EFECE40026D183 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SKD58BVR64;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DataStore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.DataStore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		75AE713224EFECE40026D183 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SKD58BVR64;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DataStore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.DataStore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -793,6 +916,15 @@
 			buildConfigurations = (
 				75AE712024EFE8E80026D183 /* Debug */,
 				75AE712124EFE8E80026D183 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75AE713024EFECE40026D183 /* Build configuration list for PBXNativeTarget "DataStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75AE713124EFECE40026D183 /* Debug */,
+				75AE713224EFECE40026D183 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
