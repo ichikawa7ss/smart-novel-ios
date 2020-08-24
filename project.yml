@@ -1,0 +1,43 @@
+name: smart-novel-ios
+options:
+  deploymentTarget:
+    iOS: 11.0
+fileGroups:
+targets:
+  smart-novel-ios:
+    type: application
+    platform: iOS
+    sources: [smart-novel-ios]
+    settings:
+      CURRENT_PROJECT_VERSION: 1
+      PRODUCT_BUNDLE_IDENTIFIER: SmartNovel
+      CODE_SIGN_STYLE: Automatic
+    dependencies:
+    - target: DataStore
+    - target: Domain
+    - target: Presentation
+  DataStore:
+    type: framework
+    platform: iOS
+    sources: [DataStore]
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: smart-novel-ios.DataStore
+      CODE_SIGN_STYLE: Automatic
+  Presentation:
+    type: framework
+    platform: iOS
+    sources: [Presentation]
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: smart-novel-ios.Presentation
+      CODE_SIGN_STYLE: Automatic
+    dependencies:
+      - target: Domain
+  Domain:
+    type: framework
+    platform: iOS
+    sources: [Domain]
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: smart-novel-ios.Domain
+      CODE_SIGN_STYLE: Automatic
+    dependencies:
+      - target: DataStore
