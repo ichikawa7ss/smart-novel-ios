@@ -1,0 +1,24 @@
+### Headers settings
+company: Shoma Ichikawa
+
+### Xcode project settings
+project_name: smart-novel-ios
+xcodeproj_path: smart-novel-ios.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_target: Presentation
+
+# The file path for new modules
+project_file_path: Presentation/Module
+
+# The Xcode group path to new modules
+project_group_path: Presentation/Module
+
+### Dependencies settings section
+
+cartfile_path: 
+
+### Templates
+templates:
+- {name: mvvm_template, local: mvvm_template}
