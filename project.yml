@@ -23,6 +23,10 @@ targets:
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: smart-novel-ios.DataStore
       CODE_SIGN_STYLE: Automatic
+    dependencies:
+      - carthage: RxSwift
+      - carthage: RxRelay
+      - carthage: RxCocoa
   Presentation:
     type: framework
     platform: iOS
@@ -32,6 +36,13 @@ targets:
       CODE_SIGN_STYLE: Automatic
     dependencies:
       - target: Domain
+      - carthage: RxSwift
+      - carthage: RxRelay
+      - carthage: RxCocoa
+      - carthage: RxWebKit
+      - carthage: Action
+      - carthage: Unio
+      - carthage: Reusable
   Domain:
     type: framework
     platform: iOS
@@ -41,3 +52,6 @@ targets:
       CODE_SIGN_STYLE: Automatic
     dependencies:
       - target: DataStore
+      - carthage: RxSwift
+      - carthage: RxRelay
+      - carthage: RxCocoa
