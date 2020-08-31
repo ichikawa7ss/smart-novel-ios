@@ -1,0 +1,12 @@
+## Rx
+github "ReactiveX/RxSwift"
+github "RxSwiftCommunity/Action"
+# 動作実績のあるバージョンを指定
+github "RxSwiftCommunity/RxWebKit" "master" 
+github "cats-oss/Unio" ~> 0.8
+
+## Infra
+github "ishkawa/APIKit" ~> 5.1
+
+## UI
+github "AliSoftware/Reusable" ~> 4.1
