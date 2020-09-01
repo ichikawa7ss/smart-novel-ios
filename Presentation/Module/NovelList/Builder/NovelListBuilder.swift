@@ -8,9 +8,9 @@
 
 import UIKit
 
-enum NovelListBuilder {
+public enum NovelListBuilder {
 
-    static func build() -> UIViewController {
+    public static func build() -> UIViewController {
         let viewController = NovelListViewController.instantiate()
         let wireframe = NovelListWireframeImpl()
 
