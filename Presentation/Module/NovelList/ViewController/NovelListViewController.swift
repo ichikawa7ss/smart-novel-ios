@@ -11,6 +11,12 @@ import UIKit
 final class NovelListViewController: UIViewController {
 
     var viewModel: NovelListViewModelType!
+    
+    @IBOutlet private weak var tableView: UITableView! {
+        willSet {
+            newValue.register(NovelListCell.self)
+        }
+    }
 
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -24,6 +30,11 @@ final class NovelListViewController: UIViewController {
 extension NovelListViewController {
 
     private func bindInput() {
+        
+        // 画面表示
+        self.rx.viewWillAppear
+            .map { _ in }
+            .bind(to: self.viewModel.input.viewWillAppear)
     }
 }
 

@@ -28,8 +28,7 @@ final class NovelListViewModel: UnioStream<NovelListViewModel>, NovelListViewMod
 extension NovelListViewModel {
 
     struct Input: InputType {
-        // e.g.
-        // let viewWillAppear = PublishRelay<Void>()
+         let viewWillAppear = PublishRelay<Void>()
     }
 
     struct Output: OutputType {
@@ -54,6 +53,16 @@ extension NovelListViewModel {
         let input = dependency.inputObservables
         let state = dependency.state
         var extra = dependency.extra
+        
+//        let fetchAction = Action<Void, Void> {
+//
+//        }
+        
+        input.viewWillAppear
+            .bind(onNext: {
+                
+            })
+            .disposed(by: disposeBag)
         
         return Output(
         )
