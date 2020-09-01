@@ -16,24 +16,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initial" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bry-80-Crq">
-                                <rect key="frame" x="187" y="437.5" width="40" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pdP-5r-5RR">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="bry-80-Crq" firstAttribute="centerX" secondItem="54R-sn-ZYy" secondAttribute="centerX" id="4f7-o3-8IT"/>
-                            <constraint firstItem="bry-80-Crq" firstAttribute="centerY" secondItem="54R-sn-ZYy" secondAttribute="centerY" id="Fwk-3j-1ZZ"/>
+                            <constraint firstItem="pdP-5r-5RR" firstAttribute="leading" secondItem="Hi6-qD-GbQ" secondAttribute="leading" id="60c-hg-4om"/>
+                            <constraint firstItem="pdP-5r-5RR" firstAttribute="trailing" secondItem="Hi6-qD-GbQ" secondAttribute="trailing" id="6Eo-iV-h4E"/>
+                            <constraint firstItem="pdP-5r-5RR" firstAttribute="top" secondItem="54R-sn-ZYy" secondAttribute="top" id="IjR-fG-b6Y"/>
+                            <constraint firstAttribute="bottom" secondItem="pdP-5r-5RR" secondAttribute="bottom" id="K8r-it-7pH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hi6-qD-GbQ"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DtD-zc-aFp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="68"/>
+            <point key="canvasLocation" x="47.826086956521742" y="67.633928571428569"/>
         </scene>
     </scenes>
 </document>
