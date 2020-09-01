@@ -1,0 +1,6 @@
+github "AliSoftware/Reusable" "4.1.1"
+github "ReactiveX/RxSwift" "5.1.1"
+github "RxSwiftCommunity/Action" "4.1.0"
+github "RxSwiftCommunity/RxWebKit" "f800f436a9c3b1d66862a5f9bcc05308f76215f6"
+github "cats-oss/Unio" "0.8.0"
+github "ishkawa/APIKit" "5.1.0"
