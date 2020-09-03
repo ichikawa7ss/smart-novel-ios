@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="M3T-D5-p07" customClass="NovelListCell" customModule="Presentation" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M3T-D5-p07" id="nSf-fS-FAT">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3S-7q-alR">
+                        <rect key="frame" x="8" y="8" width="32" height="12"/>
+                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3q-em-gxY">
+                        <rect key="frame" x="8" y="36" width="53" height="18"/>
+                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aN-5n-pZF">
+                        <rect key="frame" x="371" y="8" width="35" height="12"/>
+                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="d3q-em-gxY" firstAttribute="top" secondItem="P3S-7q-alR" secondAttribute="bottom" constant="16" id="95G-OK-qSN"/>
+                    <constraint firstAttribute="trailing" secondItem="8aN-5n-pZF" secondAttribute="trailing" constant="8" id="DZm-w8-z2w"/>
+                    <constraint firstItem="P3S-7q-alR" firstAttribute="leading" secondItem="nSf-fS-FAT" secondAttribute="leading" constant="8" id="fmE-hK-9Cy"/>
+                    <constraint firstItem="8aN-5n-pZF" firstAttribute="top" secondItem="nSf-fS-FAT" secondAttribute="top" constant="8" id="mSS-ji-w4r"/>
+                    <constraint firstItem="P3S-7q-alR" firstAttribute="top" secondItem="nSf-fS-FAT" secondAttribute="top" constant="8" id="qtw-Dy-eYr"/>
+                    <constraint firstItem="d3q-em-gxY" firstAttribute="leading" secondItem="nSf-fS-FAT" secondAttribute="leading" constant="8" id="wbh-HB-FMB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="authorLabel" destination="8aN-5n-pZF" id="CJL-90-vaZ"/>
+                <outlet property="dateLabel" destination="P3S-7q-alR" id="hex-AY-mi5"/>
+                <outlet property="novelTitleLabel" destination="d3q-em-gxY" id="Nec-5O-r2d"/>
+            </connections>
+            <point key="canvasLocation" x="92.753623188405811" y="-90.401785714285708"/>
+        </tableViewCell>
+    </objects>
+</document>
