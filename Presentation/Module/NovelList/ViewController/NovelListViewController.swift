@@ -35,6 +35,7 @@ extension NovelListViewController {
         self.rx.viewWillAppear
             .map { _ in }
             .bind(to: self.viewModel.input.viewWillAppear)
+            .disposed(by: self.disposeBag)
     }
 }
 

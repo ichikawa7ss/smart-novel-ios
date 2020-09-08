@@ -10,6 +10,7 @@ import Action
 import RxCocoa
 import RxSwift
 import Unio
+import Domain
 
 protocol NovelListViewModelType: AnyObject {
     var input: InputWrapper<NovelListViewModel.Input> { get }
@@ -44,6 +45,7 @@ extension NovelListViewModel {
 
     struct Extra: ExtraType {
         let wireframe: NovelListWireframe
+        let useCase: NovelListUseCase
     }
 }
 
@@ -54,13 +56,19 @@ extension NovelListViewModel {
         let state = dependency.state
         var extra = dependency.extra
         
-//        let fetchAction = Action<Void, Void> {
-//
-//        }
+        let fetchData = Action<Void, NovelListModel> {
+            extra.useCase.get()
+        }
         
         input.viewWillAppear
             .bind(onNext: {
-                
+                fetchData.execute()
+            })
+            .disposed(by: disposeBag)
+        
+        fetchData.elements
+            .bind(onNext: { model in
+                print(model.self)
             })
             .disposed(by: disposeBag)
         
