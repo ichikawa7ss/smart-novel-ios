@@ -16,7 +16,7 @@ public enum NovelListRepositoryProvider {
 }
 
 public protocol NovelListRepository {
-    func get() -> Single<NovelListResponse>
+    func get() -> Single<QiitaItemListResponse>
 }
 
 private struct NovelListRepositoryImpl: NovelListRepository {
@@ -27,12 +27,7 @@ private struct NovelListRepositoryImpl: NovelListRepository {
         self.api = api
     }
     
-    func get() -> Single<NovelListResponse> {
+    func get() -> Single<QiitaItemListResponse> {
         return api.get()
     }
 }
-
-public protocol NovelListResponse{}
-
-struct NovelListResponseImpl: NovelListResponse {}
-

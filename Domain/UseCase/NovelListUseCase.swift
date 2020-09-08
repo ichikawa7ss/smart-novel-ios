@@ -9,9 +9,9 @@ import Foundation
 import DataStore
 import RxSwift
 
-enum NovelListUseCaseProvider {
+public enum NovelListUseCaseProvider {
     
-    static func provide() -> NovelListUseCase {
+    public static func provide() -> NovelListUseCase {
         return NovelListUseCaseImpl(
             novelListRepository: NovelListRepositoryProvider.provide(),
             novelListTranslator: NovelListTranslatorProvider.provide()
@@ -19,7 +19,7 @@ enum NovelListUseCaseProvider {
     }
 }
 
-protocol NovelListUseCase {
+public protocol NovelListUseCase {
     func get() -> Single<NovelListModel>
 }
 

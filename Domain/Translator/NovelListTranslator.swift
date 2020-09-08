@@ -17,23 +17,22 @@ enum NovelListTranslatorProvider {
 }
 
 protocol NovelListTranslator {
-    func convert(from response: Single<NovelListResponse>) -> Single<NovelListModel>
+    func convert(from response: Single<QiitaItemListResponse>) -> Single<NovelListModel>
 }
 
 private struct NovelListTranslatorImpl: NovelListTranslator {
 
-    func convert(from response: Single<NovelListResponse>) -> Single<NovelListModel> {
-        return .just(NovelListModelImpl(response))
+    func convert(from response: Single<QiitaItemListResponse>) -> Single<NovelListModel> {
+        return response.map { NovelListModel($0)}
+//        return .just(NovelListModel(response))
     }
 }
 
-protocol NovelListModel{}
+public struct NovelListModel{
 
-private struct NovelListModelImpl: NovelListModel {
+    public let text: String
     
-    let text: String
-    
-    init(_ model: Single<NovelListResponse>) {
+    init(_ model: QiitaItemListResponse) {
         self.text = "test"
     }
 }
