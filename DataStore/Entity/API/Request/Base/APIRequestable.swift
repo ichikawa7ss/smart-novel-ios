@@ -14,7 +14,7 @@ extension APIRequestable {
     
     var baseURL: URL {
         // qiita
-        return URL(string: "/api/v2/items")!
+        return URL(string: "https://qiita.com/api/v2")!
     }
     
     // TODO もっかい調べる
@@ -26,6 +26,13 @@ extension APIRequestable {
     var dataParser: DataParser {
         return DecodableDataParser()
     }
+
+    var headerFields: [String : String] {
+//        return ["Authorization":"Bearer "]
+        // 一応アクセストークンはgitにプッシュしない
+        return [:]
+    }
+    
 }
 
 extension APIKit.Request where Self.Response: Decodable {
