@@ -28,7 +28,6 @@ private struct NovelListAPIDataStoreImpl: NovelListAPIDataStore {
     }
     
     func get() -> Single<QiitaItemListResponse> {
-//        return .just(NovelListResponseImpl())
         return self.session.rx.response(for: QiitaItemsListRequest())
     }
 }

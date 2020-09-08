@@ -9,12 +9,12 @@ import Foundation
 
 public struct QiitaItemListResponse: Decodable {
 
-    let items: [Item]
+    public let items: [Item]
 
-    struct Item: Decodable {
-        let title: String
-        let likesCount: Int
-        let user: User
+    public struct Item: Decodable {
+        public let title: String
+        public let likesCount: Int
+        public let user: User
         
         private enum CodingKeys: String, CodingKey {
             case title
@@ -22,8 +22,8 @@ public struct QiitaItemListResponse: Decodable {
             case user
         }
         
-        struct User: Decodable {
-            let id: String
+        public struct User: Decodable {
+            public let id: String
         }
     }
 }

@@ -24,15 +24,27 @@ private struct NovelListTranslatorImpl: NovelListTranslator {
 
     func convert(from response: Single<QiitaItemListResponse>) -> Single<NovelListModel> {
         return response.map { NovelListModel($0)}
-//        return .just(NovelListModel(response))
     }
 }
 
 public struct NovelListModel{
 
-    public let text: String
+    public let items: [Item]
     
-    init(_ model: QiitaItemListResponse) {
-        self.text = "test"
+    init(_ response: QiitaItemListResponse) {
+        self.items = response.items.map {Item(item: $0)}
+    }
+    
+    public struct Item {
+
+        public let title: String
+        public let likesCount: Int
+        public let userName: String
+        
+        init(item: QiitaItemListResponse.Item) {
+            self.title = item.title
+            self.likesCount = item.likesCount
+            self.userName = item.user.id
+        }
     }
 }
