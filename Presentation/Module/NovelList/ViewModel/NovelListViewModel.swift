@@ -33,14 +33,11 @@ extension NovelListViewModel {
     }
 
     struct Output: OutputType {
-        // e.g.
-        // let reloadAll: Observable<Void>
-        // let sections: BehaviorRelay<[NovelListViewController.Section]>
+         let novelListModel: BehaviorRelay<NovelListModel?>
     }
     
     struct State: StateType {
-        // e.g.
-        // let networkState = PublishRelay<NetworkState>()
+        let novelListModel = BehaviorRelay<NovelListModel?>(value: nil)
     }
 
     struct Extra: ExtraType {
@@ -67,12 +64,11 @@ extension NovelListViewModel {
             .disposed(by: disposeBag)
         
         fetchData.elements
-            .bind(onNext: { model in
-                print(model.self)
-            })
+            .bind(to: state.novelListModel)
             .disposed(by: disposeBag)
         
         return Output(
+            novelListModel: state.novelListModel
         )
     }
 }
