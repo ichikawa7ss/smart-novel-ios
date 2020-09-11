@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Domain
 
 final class NovelListViewController: UIViewController {
 
@@ -35,6 +36,7 @@ extension NovelListViewController {
         self.rx.viewWillAppear
             .map { _ in }
             .bind(to: self.viewModel.input.viewWillAppear)
+            .disposed(by: self.disposeBag)
     }
 }
 
@@ -42,5 +44,29 @@ extension NovelListViewController {
 extension NovelListViewController {
 
     private func bindOutput() {
+        
+        self.viewModel.output.novelListModel
+            .bind { [weak self] _ in
+                self?.tableView.reloadData()
+        }
+        .disposed(by: disposeBag)
+        
+    }
+}
+
+extension NovelListViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.output.novelListModel.value?.items.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let items = self.viewModel.output.novelListModel.value?.items,
+            let item = items[safe: indexPath.row] else {
+                return UITableViewCell()
+        }
+        let cell: NovelListCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.setData(item)
+        return cell
     }
 }

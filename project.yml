@@ -27,6 +27,7 @@ targets:
       - carthage: RxSwift
       - carthage: RxRelay
       - carthage: RxCocoa
+      - carthage: APIKit
   Presentation:
     type: framework
     platform: iOS

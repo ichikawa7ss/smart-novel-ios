@@ -10,6 +10,7 @@ import Action
 import RxCocoa
 import RxSwift
 import Unio
+import Domain
 
 protocol NovelListViewModelType: AnyObject {
     var input: InputWrapper<NovelListViewModel.Input> { get }
@@ -32,18 +33,16 @@ extension NovelListViewModel {
     }
 
     struct Output: OutputType {
-        // e.g.
-        // let reloadAll: Observable<Void>
-        // let sections: BehaviorRelay<[NovelListViewController.Section]>
+         let novelListModel: BehaviorRelay<NovelListModel?>
     }
     
     struct State: StateType {
-        // e.g.
-        // let networkState = PublishRelay<NetworkState>()
+        let novelListModel = BehaviorRelay<NovelListModel?>(value: nil)
     }
 
     struct Extra: ExtraType {
         let wireframe: NovelListWireframe
+        let useCase: NovelListUseCase
     }
 }
 
@@ -54,17 +53,22 @@ extension NovelListViewModel {
         let state = dependency.state
         var extra = dependency.extra
         
-//        let fetchAction = Action<Void, Void> {
-//
-//        }
+        let fetchData = Action<Void, NovelListModel> {
+            extra.useCase.get()
+        }
         
         input.viewWillAppear
             .bind(onNext: {
-                
+                fetchData.execute()
             })
             .disposed(by: disposeBag)
         
+        fetchData.elements
+            .bind(to: state.novelListModel)
+            .disposed(by: disposeBag)
+        
         return Output(
+            novelListModel: state.novelListModel
         )
     }
 }

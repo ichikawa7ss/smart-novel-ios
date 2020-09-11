@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Domain
 
 final class NovelListCell: UITableViewCell {
  
@@ -15,9 +16,9 @@ final class NovelListCell: UITableViewCell {
     
     @IBOutlet private weak var dateLabel: UILabel!
     
-    func setData(_ num: Int) {
-        self.novelTitleLabel.text = "title \(num)"
-        self.authorLabel.text = "author \(num)"
-        self.dateLabel.text = "date \(num)"
+    func setData(_ item: NovelListModel.Item) {
+        self.novelTitleLabel.text = item.title
+        self.authorLabel.text = item.userName
+        self.dateLabel.text = "LGTM: \(item.likesCount)"
     }
 }

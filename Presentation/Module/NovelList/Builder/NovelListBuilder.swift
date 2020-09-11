@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Domain
 
 public enum NovelListBuilder {
 
@@ -18,7 +19,8 @@ public enum NovelListBuilder {
 
         let viewModel = NovelListViewModel(
             extra: .init(
-                wireframe: wireframe
+                wireframe: wireframe,
+                useCase: NovelListUseCaseProvider.provide()
             )
         )
 
