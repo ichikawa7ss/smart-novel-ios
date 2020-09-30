@@ -31,10 +31,25 @@ extension NovelListModel {
         public let title: String
         public let author: String
         public let novelDetailUrl: URL?
-        public let site: String
+        public let site: Site
         public let genre: String
         public let tags: [NovelListModel.Novel.Tag]
         public let updateTime: String
+        
+        public enum Site: String {
+            case kakuyomu = "カクヨム"
+            case alphapolis = "アルファポリス"
+            
+            public var colorCode: String {
+                switch self {
+                case .kakuyomu:
+                    return "#4cace4"
+                case .alphapolis:
+                    return "#f4a424"
+                }
+            }
+        }
+
     }
 }
 
@@ -44,7 +59,7 @@ extension NovelListModel.Novel {
         self.title = novel.title
         self.author = novel.author
         self.novelDetailUrl = URL(string: novel.url)
-        self.site = novel.site
+        self.site = Site(rawValue: novel.site) ?? .alphapolis
         self.genre = novel.genre
         self.tags = novel.tags.map { Tag(name: $0.name) }
         self.updateTime = novel.updateTime

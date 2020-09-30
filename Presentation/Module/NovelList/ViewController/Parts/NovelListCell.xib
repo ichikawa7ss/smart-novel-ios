@@ -35,10 +35,17 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3q-em-gxY">
-                        <rect key="frame" x="32" y="36" width="374" height="18"/>
-                        <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="18"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3q-em-gxY">
+                        <rect key="frame" x="32" y="36" width="374" height="62"/>
+                        <attributedString key="attributedText">
+                            <fragment content="追放ですか？それは残念です。最後までワインを作りたかったのですが。～新たな地でやり直します～もし3行以上になる場合にはこの先のテキストは">
+                                <attributes>
+                                    <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <font key="NSFont" size="18" name="HiraginoSans-W6"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8aN-5n-pZF">
@@ -48,13 +55,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meo-4j-Q1h">
-                        <rect key="frame" x="32" y="109" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="32" y="118" width="354" height="12"/>
+                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YvF-cP-ize">
-                        <rect key="frame" x="32" y="141" width="374" height="1"/>
+                        <rect key="frame" x="32" y="145" width="374" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="sXd-84-cEu"/>
@@ -63,14 +70,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="YvF-cP-ize" firstAttribute="leading" secondItem="fiC-xC-9zx" secondAttribute="trailing" constant="8" id="3yx-57-1jt"/>
-                    <constraint firstAttribute="bottom" secondItem="YvF-cP-ize" secondAttribute="bottom" constant="8" id="7Do-nf-af8"/>
-                    <constraint firstItem="d3q-em-gxY" firstAttribute="top" secondItem="P3S-7q-alR" secondAttribute="bottom" constant="16" id="95G-OK-qSN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="meo-4j-Q1h" secondAttribute="trailing" constant="8" id="4O1-54-eWU"/>
+                    <constraint firstAttribute="bottom" secondItem="YvF-cP-ize" secondAttribute="bottom" constant="4" id="7Do-nf-af8"/>
                     <constraint firstItem="fiC-xC-9zx" firstAttribute="top" secondItem="nSf-fS-FAT" secondAttribute="top" constant="4" id="AVK-wb-DSu"/>
                     <constraint firstItem="fiC-xC-9zx" firstAttribute="leading" secondItem="nSf-fS-FAT" secondAttribute="leading" constant="8" id="Acj-Hc-nNr"/>
                     <constraint firstAttribute="trailing" secondItem="8aN-5n-pZF" secondAttribute="trailing" constant="8" id="DZm-w8-z2w"/>
                     <constraint firstAttribute="bottom" secondItem="meo-4j-Q1h" secondAttribute="bottom" constant="20" id="d1Y-qo-QoY"/>
                     <constraint firstItem="P3S-7q-alR" firstAttribute="leading" secondItem="fiC-xC-9zx" secondAttribute="trailing" constant="8" id="fmE-hK-9Cy"/>
                     <constraint firstAttribute="bottom" secondItem="fiC-xC-9zx" secondAttribute="bottom" constant="12" id="gtr-th-xXT"/>
+                    <constraint firstItem="d3q-em-gxY" firstAttribute="centerY" secondItem="fiC-xC-9zx" secondAttribute="centerY" constant="-4" id="hky-FH-xmP"/>
                     <constraint firstItem="meo-4j-Q1h" firstAttribute="leading" secondItem="fiC-xC-9zx" secondAttribute="trailing" constant="8" id="lQN-4z-PyO"/>
                     <constraint firstItem="8aN-5n-pZF" firstAttribute="top" secondItem="nSf-fS-FAT" secondAttribute="top" constant="8" id="mSS-ji-w4r"/>
                     <constraint firstItem="P3S-7q-alR" firstAttribute="top" secondItem="nSf-fS-FAT" secondAttribute="top" constant="8" id="qtw-Dy-eYr"/>

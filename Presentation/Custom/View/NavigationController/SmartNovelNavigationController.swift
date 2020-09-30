@@ -40,6 +40,6 @@ extension SmartNovelNavigationController {
 
     private func setupAppearance() {
         // バーの背景色
-        self.navigationBar.barTintColor = .orange
+        self.navigationBar.barTintColor = .white
     }
 }
