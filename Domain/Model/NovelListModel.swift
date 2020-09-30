@@ -34,6 +34,7 @@ extension NovelListModel {
         public let site: String
         public let genre: String
         public let tags: [NovelListModel.Novel.Tag]
+        public let updateTime: String
     }
 }
 
@@ -46,6 +47,7 @@ extension NovelListModel.Novel {
         self.site = novel.site
         self.genre = novel.genre
         self.tags = novel.tags.map { Tag(name: $0.name) }
+        self.updateTime = novel.updateTime
     }
 }
 

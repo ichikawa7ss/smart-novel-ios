@@ -24,6 +24,7 @@ extension NovelListResponse {
         public let site: String
         public let genre: String
         public let tags: [Tag]
+        public let updateTime: String
         
         private enum CodingKeys: String, CodingKey {
             case title
@@ -32,6 +33,7 @@ extension NovelListResponse {
             case site = "site_name"
             case genre
             case tags = "tag"
+            case updateTime = "updated_time"
         }
         
         public struct Tag: Decodable {
