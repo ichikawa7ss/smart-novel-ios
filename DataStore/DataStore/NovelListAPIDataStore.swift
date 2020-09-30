@@ -16,7 +16,7 @@ enum NovelListAPIDataStoreProvider {
 }
 
 protocol NovelListAPIDataStore {
-    func get() -> Single<QiitaItemListResponse>
+    func get() -> Single<NovelListResponse>
 }
 
 private struct NovelListAPIDataStoreImpl: NovelListAPIDataStore {
@@ -27,7 +27,7 @@ private struct NovelListAPIDataStoreImpl: NovelListAPIDataStore {
         self.session = session
     }
     
-    func get() -> Single<QiitaItemListResponse> {
-        return self.session.rx.response(for: QiitaItemsListRequest())
+    func get() -> Single<NovelListResponse> {
+        return self.session.rx.response(for: NovelListRequest())
     }
 }

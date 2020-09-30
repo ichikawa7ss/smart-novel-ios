@@ -14,7 +14,7 @@ extension APIRequestable {
     
     var baseURL: URL {
         // qiita
-        return URL(string: "https://qiita.com/api/v2")!
+        return URL(string: "https://sz1x6j1pu6.execute-api.us-west-2.amazonaws.com/prod")!
     }
     
     var parameters: Any? {
