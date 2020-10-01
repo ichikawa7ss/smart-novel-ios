@@ -72,3 +72,9 @@ extension NovelListModel.Novel {
         public let name: String
     }
 }
+
+extension NovelListModel.Novel.Tag {
+    public var sharpTagName: String {
+        return "#\(self.name)"
+    }
+}
