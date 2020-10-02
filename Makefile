@@ -13,3 +13,6 @@ project: ## Generate Xcode project and workspace
 
 open: ## Open Xcode workspace
 	open smart-novel-ios.xcodeproj
+
+xcode12-workaround: ## Temporary steps to build with Xcode 12
+	sh ./scripts/carthage-workaround-xc12.sh update --platform iOS --cache-builds

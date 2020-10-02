@@ -16,9 +16,29 @@ final class NovelListCell: UITableViewCell {
     
     @IBOutlet private weak var dateLabel: UILabel!
     
-    func setData(_ item: NovelListModel.Item) {
+    @IBOutlet private weak var siteColorView: UIView!
+    
+    @IBOutlet private weak var tagLabel: UILabel!
+    
+    @IBOutlet private weak var genreLabel: UILabel!
+    
+    @IBOutlet private weak var underline: UIView!
+    
+    func setData(_ item: NovelListModel.Novel) {
         self.novelTitleLabel.text = item.title
-        self.authorLabel.text = item.userName
-        self.dateLabel.text = "LGTM: \(item.likesCount)"
+        self.authorLabel.text = item.author
+        self.dateLabel.text = self.trimTime(isoDateStr: item.updateTime)
+        self.tagLabel.text = item.tags.map { $0.sharpTagName }.joined(separator: " ")
+        self.siteColorView.backgroundColor = UIColor(hex: item.site.colorCode)
+        self.genreLabel.text = item.genre
+        self.genreLabel.textColor = UIColor(hex: "CC3300")
+        self.underline.backgroundColor = UIColor(hex: "CC3300")
+    }
+    
+    /// yyyy-MM-DDTHH:mm:ssZ形式の日付の文字列をyyyy/MM/DD HH:mm に変換する
+    private func trimTime(isoDateStr: String) -> String {
+        let date = isoDateStr.components(separatedBy: "T")[0]
+        let time = isoDateStr.components(separatedBy: "T")[1]
+        return "\(date) \(time.prefix(5))"
     }
 }

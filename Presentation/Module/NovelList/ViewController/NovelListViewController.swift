@@ -57,11 +57,11 @@ extension NovelListViewController {
 extension NovelListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.output.novelListModel.value?.items.count ?? 0
+        return self.viewModel.output.novelListModel.value?.novels.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let items = self.viewModel.output.novelListModel.value?.items,
+        guard let items = self.viewModel.output.novelListModel.value?.novels,
             let item = items[safe: indexPath.row] else {
                 return UITableViewCell()
         }
