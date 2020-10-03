@@ -49,6 +49,11 @@ final class NovelListCell: UITableViewCell {
         self.underline.backgroundColor = UIColor(hex: "CC3300")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.disposeBag = DisposeBag()
+    }
+    
     /// yyyy-MM-DDTHH:mm:ssZ形式の日付の文字列をyyyy/MM/DD HH:mm に変換する
     private func trimTime(isoDateStr: String) -> String {
         let date = isoDateStr.components(separatedBy: "T")[0]
