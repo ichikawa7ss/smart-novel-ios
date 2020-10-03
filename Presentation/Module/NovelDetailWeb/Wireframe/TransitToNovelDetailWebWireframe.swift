@@ -12,21 +12,15 @@ protocol TransitToNovelDetailWebWireframe: AnyObject {
 
     var viewController: UIViewController? { get }
 
-    // func pushNovelDetailWeb()
-    // func presentNovelDetailWeb()
+     func pushNovelDetailWeb()
 }
 
 extension TransitToNovelDetailWebWireframe {
 
-    //func pushNovelDetailWeb() {
-    //    let vc = NovelDetailWebBuilder.build()
-    //    self.viewController?.navigationController?.pushViewController(vc, animated: true)
-    //}
-
-    //func presentNovelDetailWeb() {
-    //    let vc = NovelDetailWebBuilder.build()
-    //    self.viewController?.present(vc, animated: true, completion: nil)
-    //}
+    func pushNovelDetailWeb() {
+        let vc = NovelDetailWebBuilder.build()
+        self.viewController?.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 //protocol NovelDetailWebWireframeDelegate: AnyObject {}

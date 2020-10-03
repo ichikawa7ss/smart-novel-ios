@@ -7,6 +7,8 @@
 
 import UIKit
 import Domain
+import RxSwift
+import RxCocoa
 
 final class NovelListCell: UITableViewCell {
  
@@ -24,7 +26,19 @@ final class NovelListCell: UITableViewCell {
     
     @IBOutlet private weak var underline: UIView!
     
+    var cellDidTapRelay = PublishRelay<NovelListModel.Novel>()
+    
+    var novel: NovelListModel.Novel?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapCell))
+        self.addGestureRecognizer(tapGesture)
+    }
+    
     func setData(_ item: NovelListModel.Novel) {
+        self.novel = item
         self.novelTitleLabel.text = item.title
         self.authorLabel.text = item.author
         self.dateLabel.text = self.trimTime(isoDateStr: item.updateTime)
@@ -40,5 +54,11 @@ final class NovelListCell: UITableViewCell {
         let date = isoDateStr.components(separatedBy: "T")[0]
         let time = isoDateStr.components(separatedBy: "T")[1]
         return "\(date) \(time.prefix(5))"
+    }
+    
+    @objc func tapCell() {
+        if let novel = self.novel {
+            self.cellDidTapRelay.accept(novel)
+        }
     }
 }
