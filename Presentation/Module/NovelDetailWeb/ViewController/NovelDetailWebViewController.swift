@@ -7,16 +7,34 @@
 //
 
 import UIKit
+import RxWebKit
+import WebKit
 
 final class NovelDetailWebViewController: UIViewController {
 
     var viewModel: NovelDetailWebViewModelType!
+    
+    var requestURL: URL!
+    
+    var webView: WKWebView = WKWebView()
 
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        view = webView
+    }
+    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.bindInput()
         self.bindOutput()
+        self.loadWebContent()
+    }
+    
+    private func loadWebContent() {
+        let urlRequest = URLRequest(url: requestURL)
+        self.webView.load(urlRequest)
     }
 }
 

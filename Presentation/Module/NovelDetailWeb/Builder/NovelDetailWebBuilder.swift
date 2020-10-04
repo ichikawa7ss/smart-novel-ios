@@ -10,7 +10,7 @@ import UIKit
 
 enum NovelDetailWebBuilder {
 
-    static func build() -> UIViewController {
+    static func build(url: URL) -> UIViewController {
         let viewController = NovelDetailWebViewController.instantiate()
         let wireframe = NovelDetailWebWireframeImpl()
 
@@ -23,6 +23,7 @@ enum NovelDetailWebBuilder {
         )
 
         viewController.viewModel = viewModel
+        viewController.requestURL = url
 
         return viewController
     }

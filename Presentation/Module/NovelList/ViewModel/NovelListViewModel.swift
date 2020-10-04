@@ -69,8 +69,10 @@ extension NovelListViewModel {
             .disposed(by: disposeBag)
         
         input.tapNovelListCell
-            .bind(onNext:  { _ in
-                extra.wireframe.pushNovelDetailWeb()
+            .map { $0.novelDetailUrl } // FIXME: できればURLのチェック機構を入れたい
+            .filterNil()
+            .bind(onNext:  { url in
+                extra.wireframe.pushNovelDetailWeb(url: url)
             })
             .disposed(by: disposeBag)
         
