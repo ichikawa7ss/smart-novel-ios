@@ -28,8 +28,7 @@ final class NovelDetailWebViewModel: UnioStream<NovelDetailWebViewModel>, NovelD
 extension NovelDetailWebViewModel {
 
     struct Input: InputType {
-        // e.g.
-        // let viewWillAppear = PublishRelay<Void>()
+         let tapSafariButton = PublishRelay<URL>()
     }
 
     struct Output: OutputType {
@@ -53,7 +52,13 @@ extension NovelDetailWebViewModel {
     static func bind(from dependency: Dependency<Input, State, Extra>, disposeBag: DisposeBag) -> Output {
         let input = dependency.inputObservables
         let state = dependency.state
-        var extra = dependency.extra
+        let extra = dependency.extra
+        
+        input.tapSafariButton
+            .bind(onNext: { url in
+                extra.wireframe.transit(by: url)
+            })
+            .disposed(by: disposeBag)
         
         return Output(
         )

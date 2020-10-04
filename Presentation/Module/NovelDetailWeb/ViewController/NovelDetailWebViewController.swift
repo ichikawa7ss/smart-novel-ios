@@ -17,6 +17,8 @@ final class NovelDetailWebViewController: UIViewController {
     var requestURL: URL!
     
     var webView: WKWebView = WKWebView()
+    
+    private let safariButton = UIBarButtonItem(image: UIImage(systemName: "safari"), style: .plain, target: nil, action: nil)
 
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
@@ -29,7 +31,12 @@ final class NovelDetailWebViewController: UIViewController {
         super.viewDidLoad()
         self.bindInput()
         self.bindOutput()
+        self.setupNavigationBar()
         self.loadWebContent()
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationItem.rightBarButtonItem = self.safariButton
     }
     
     private func loadWebContent() {
@@ -42,6 +49,11 @@ final class NovelDetailWebViewController: UIViewController {
 extension NovelDetailWebViewController {
 
     private func bindInput() {
+        
+        self.safariButton.rx.tap
+            .map { self.requestURL }
+            .bind(to: self.viewModel.input.tapSafariButton)
+            .disposed(by: self.disposeBag)
     }
 }
 

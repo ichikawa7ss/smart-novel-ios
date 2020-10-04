@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NovelDetailWebWireframe: AnyObject {}
+protocol NovelDetailWebWireframe: TransitToBrowserWireframe {}
 
 final class NovelDetailWebWireframeImpl: NovelDetailWebWireframe {
 

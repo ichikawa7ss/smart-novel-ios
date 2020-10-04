@@ -4,7 +4,7 @@ configs:
   dev-release: release
 options:
   deploymentTarget:
-    iOS: 11.0
+    iOS: 13.0
 fileGroups:
 targets:
   smart-novel-ios:
@@ -29,6 +29,15 @@ targets:
     - target: DataStore
     - target: Domain
     - target: Presentation
+    info:
+        path: smart-novel-ios/Generated/Info.plist
+        properties:
+            CFBundleDisplayName: SmartNovel
+            CFBundleShortVersionString: "1.0.0"
+            CFBundleVersion: "1"
+            UILaunchStoryboardName: LaunchScreen
+            UIRequiredDeviceCapabilities: [armv7]
+            LSApplicationQueriesSchemes: ["https", "http"]
   DataStore:
     type: framework
     platform: iOS
