@@ -34,6 +34,7 @@ extension NovelListViewController {
         
         // 画面表示
         self.rx.viewWillAppear
+            .take(1) // 初回のみ取得
             .map { _ in }
             .bind(to: self.viewModel.input.viewWillAppear)
             .disposed(by: self.disposeBag)

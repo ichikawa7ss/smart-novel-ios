@@ -36,7 +36,9 @@ final class NovelDetailWebViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        self.navigationItem.rightBarButtonItem = self.safariButton
+        self.navigationController?.navigationBar.isTranslucent = false // ナビが-ションバーを半透明にする
+        self.edgesForExtendedLayout = .bottom // viewの拡張をNavigationBarのボトムまでに設定
+        self.navigationItem.rightBarButtonItem = self.safariButton // safariボタン
     }
     
     private func loadWebContent() {
