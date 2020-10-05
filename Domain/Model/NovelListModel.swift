@@ -37,8 +37,8 @@ extension NovelListModel {
         public let updateTime: String
         
         public enum Site: String {
-            case kakuyomu = "カクヨム"
-            case alphapolis = "アルファポリス"
+            case kakuyomu
+            case alphapolis
             
             public var colorCode: String {
                 switch self {

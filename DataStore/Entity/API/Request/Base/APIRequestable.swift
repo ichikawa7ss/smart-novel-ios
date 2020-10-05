@@ -14,7 +14,7 @@ extension APIRequestable {
     
     var baseURL: URL {
         // qiita
-        return URL(string: "https://sz1x6j1pu6.execute-api.us-west-2.amazonaws.com/prod")!
+        return URL(string: "https://31qlocs8rf.execute-api.ap-northeast-1.amazonaws.com/default")!
     }
     
     var parameters: Any? {
@@ -27,6 +27,10 @@ extension APIRequestable {
 }
 
 extension APIKit.Request where Self.Response: Decodable {
+    
+    var headerFields: [String: String] {
+        return ["x-api-key": "HVl2wfAsVb2IObEbOq6Wz4oyxLuDIXWkaS2wym6S"]
+    }
     
     // 成功した場合
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
