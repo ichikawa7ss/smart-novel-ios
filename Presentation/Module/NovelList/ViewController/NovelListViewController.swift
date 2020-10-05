@@ -48,8 +48,8 @@ extension NovelListViewController {
         self.viewModel.output.novelListModel
             .bind { [weak self] _ in
                 self?.tableView.reloadData()
-        }
-        .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
         
     }
 }
@@ -65,8 +65,20 @@ extension NovelListViewController: UITableViewDataSource {
             let item = items[safe: indexPath.row] else {
                 return UITableViewCell()
         }
-        let cell: NovelListCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.setData(item)
+        let cell = self.novelListCell(tableView.dequeueReusableCell(for: indexPath), data: item)
+        return cell
+    }
+    
+    private func novelListCell(_ cell: NovelListCell, data: NovelListModel.Novel) -> NovelListCell {
+
+        cell.setData(data)
+        
+        cell.cellDidTapRelay
+            .bind(onNext: { [weak self] novel in
+                self?.viewModel.input.tapNovelListCell(novel)
+            })
+            .disposed(by: cell.disposeBag)
+        
         return cell
     }
 }

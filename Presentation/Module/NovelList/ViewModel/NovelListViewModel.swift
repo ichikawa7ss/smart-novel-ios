@@ -18,7 +18,7 @@ protocol NovelListViewModelType: AnyObject {
 }
 
 final class NovelListViewModel: UnioStream<NovelListViewModel>, NovelListViewModelType  {
-
+    
     init(extra: Extra) {
         super.init(input: Input(),
                    state: State(),
@@ -27,19 +27,20 @@ final class NovelListViewModel: UnioStream<NovelListViewModel>, NovelListViewMod
 }
 
 extension NovelListViewModel {
-
+    
     struct Input: InputType {
-         let viewWillAppear = PublishRelay<Void>()
+        let viewWillAppear = PublishRelay<Void>()
+        let tapNovelListCell = PublishRelay<NovelListModel.Novel>()
     }
-
+    
     struct Output: OutputType {
-         let novelListModel: BehaviorRelay<NovelListModel?>
+        let novelListModel: BehaviorRelay<NovelListModel?>
     }
     
     struct State: StateType {
         let novelListModel = BehaviorRelay<NovelListModel?>(value: nil)
     }
-
+    
     struct Extra: ExtraType {
         let wireframe: NovelListWireframe
         let useCase: NovelListUseCase
@@ -51,7 +52,7 @@ extension NovelListViewModel {
     static func bind(from dependency: Dependency<Input, State, Extra>, disposeBag: DisposeBag) -> Output {
         let input = dependency.inputObservables
         let state = dependency.state
-        var extra = dependency.extra
+        let extra = dependency.extra
         
         let fetchData = Action<Void, NovelListModel> {
             extra.useCase.get()
@@ -65,6 +66,14 @@ extension NovelListViewModel {
         
         fetchData.elements
             .bind(to: state.novelListModel)
+            .disposed(by: disposeBag)
+        
+        input.tapNovelListCell
+            .map { $0.novelDetailUrl } // FIXME: できればURLのチェック機構を入れたい
+            .filterNil()
+            .bind(onNext:  { url in
+                extra.wireframe.pushNovelDetailWeb(url: url)
+            })
             .disposed(by: disposeBag)
         
         return Output(

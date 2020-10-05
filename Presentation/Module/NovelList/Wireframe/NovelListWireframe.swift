@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NovelListWireframe: AnyObject {}
+protocol NovelListWireframe: TransitToNovelDetailWebWireframe {}
 
 final class NovelListWireframeImpl: NovelListWireframe {
 

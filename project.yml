@@ -1,7 +1,10 @@
 name: smart-novel-ios
+configs:
+  dev-debug: debug
+  dev-release: release
 options:
   deploymentTarget:
-    iOS: 11.0
+    iOS: 13.0
 fileGroups:
 targets:
   smart-novel-ios:
@@ -9,13 +12,32 @@ targets:
     platform: iOS
     sources: [smart-novel-ios]
     settings:
-      CURRENT_PROJECT_VERSION: 1
-      PRODUCT_BUNDLE_IDENTIFIER: SmartNovel
-      CODE_SIGN_STYLE: Automatic
+      configs:
+        dev-debug:
+          PROVISIONING_PROFILE_SPECIFIER: smartnovel.ios.dev.develop
+          CURRENT_PROJECT_VERSION: 1
+          PRODUCT_BUNDLE_IDENTIFIER: smart-novel-ios
+          CODE_SIGN_STYLE: Manual
+          DEVELOPMENT_TEAM: SKD58BVR64
+        dev-release:
+          PROVISIONING_PROFILE_SPECIFIER: smartnovel.ios.dev.adhoc
+          CURRENT_PROJECT_VERSION: 1
+          PRODUCT_BUNDLE_IDENTIFIER: smart-novel-ios
+          CODE_SIGN_STYLE: Manual
+          DEVELOPMENT_TEAM: SKD58BVR64
     dependencies:
     - target: DataStore
     - target: Domain
     - target: Presentation
+    info:
+        path: smart-novel-ios/Generated/Info.plist
+        properties:
+            CFBundleDisplayName: SmartNovel
+            CFBundleShortVersionString: "1.0.0"
+            CFBundleVersion: "1"
+            UILaunchStoryboardName: LaunchScreen
+            UIRequiredDeviceCapabilities: [armv7]
+            LSApplicationQueriesSchemes: ["https", "http"]
   DataStore:
     type: framework
     platform: iOS
@@ -56,3 +78,26 @@ targets:
       - carthage: RxSwift
       - carthage: RxRelay
       - carthage: RxCocoa
+
+# スキーム
+schemeTemplates:
+  SmartNovelScheme:
+    build:
+      targets:
+        smart-novel-ios: all
+    run:
+      config: ${debugConfig}
+    test:
+      config: ${debugConfig}
+      gatherCoverageData: true
+    profile:
+      config: ${releaseConfig}
+    analyze:
+      config: ${debugConfig}
+    archive:
+      config: ${releaseConfig}
+    dev:
+      templates: [SmartNovelScheme]
+      templateAttributes:
+        debugConfig: dev-debug
+        releaseConfig: dev-release
