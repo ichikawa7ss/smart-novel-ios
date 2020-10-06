@@ -24,6 +24,15 @@ final class NovelListViewController: UIViewController {
         super.viewDidLoad()
         self.bindInput()
         self.bindOutput()
+        self.setNavigationTitleView(UIImage(named: "app_header_png")!)
+    }
+    
+    /// Naviagationのタイトルを画像でSETする
+    private func setNavigationTitleView(_ image: UIImage) {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)) // 画像サイズから表示Viewのサイズを決める
+        imageView.contentMode = .scaleToFill
+        imageView.image = image
+        self.navigationItem.titleView = imageView
     }
 }
 
@@ -34,6 +43,7 @@ extension NovelListViewController {
         
         // 画面表示
         self.rx.viewWillAppear
+            .take(1) // 初回のみ取得
             .map { _ in }
             .bind(to: self.viewModel.input.viewWillAppear)
             .disposed(by: self.disposeBag)

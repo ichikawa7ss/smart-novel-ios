@@ -17,6 +17,6 @@ struct NovelListRequest: APIRequestable {
     }
     
     var path: String {
-        return ""
+        return "/search-novel"
     }
 }
