@@ -30,15 +30,16 @@ extension NovelListViewModel {
     
     struct Input: InputType {
         let viewWillAppear = PublishRelay<Void>()
+        let reachedBottom = PublishRelay<Void>()
         let tapNovelListCell = PublishRelay<NovelListModel.Novel>()
     }
     
     struct Output: OutputType {
-        let novelListModel: BehaviorRelay<NovelListModel?>
+        let novels: BehaviorRelay<[NovelListModel.Novel]>
     }
     
     struct State: StateType {
-        let novelListModel = BehaviorRelay<NovelListModel?>(value: nil)
+        let novels = BehaviorRelay<[NovelListModel.Novel]>(value: [])
     }
     
     struct Extra: ExtraType {
@@ -54,18 +55,26 @@ extension NovelListViewModel {
         let state = dependency.state
         let extra = dependency.extra
         
-        let fetchData = Action<Void, NovelListModel> {
-            extra.useCase.get()
+        let fetchData = Action<(limit: Int, offset: Int), NovelListModel> { args in
+            extra.useCase.get(limit: args.limit, offset: args.offset)
         }
         
-        input.viewWillAppear
+        Observable.merge (
+            input.viewWillAppear,
+            input.reachedBottom
+        )
             .bind(onNext: {
-                fetchData.execute()
+                fetchData.execute((limit: 20, offset: state.novels.value.count))
             })
             .disposed(by: disposeBag)
         
         fetchData.elements
-            .bind(to: state.novelListModel)
+            .flatMap { model -> BehaviorRelay<[NovelListModel.Novel]> in
+                var retNovels = state.novels.value
+                retNovels += model.novels
+                return BehaviorRelay(value: retNovels)
+            }
+            .bind(to: state.novels)
             .disposed(by: disposeBag)
         
         input.tapNovelListCell
@@ -77,7 +86,7 @@ extension NovelListViewModel {
             .disposed(by: disposeBag)
         
         return Output(
-            novelListModel: state.novelListModel
+            novels: state.novels
         )
     }
 }

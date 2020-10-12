@@ -8,6 +8,8 @@
 
 import UIKit
 import Domain
+import RxCocoa
+import RxSwift
 
 final class NovelListViewController: UIViewController {
 
@@ -47,15 +49,20 @@ extension NovelListViewController {
             .map { _ in }
             .bind(to: self.viewModel.input.viewWillAppear)
             .disposed(by: self.disposeBag)
+        
+        self.tableView.rx.reachedBottom()
+            .skip(1) // 画面遷移直後、要素が無い状態の時にreachedBottomが来ちゃうので初回は無視する
+            .bind(to: self.viewModel.input.reachedBottom)
+            .disposed(by: self.disposeBag)
     }
 }
-
+    
 // MARK: - bind output
 extension NovelListViewController {
 
     private func bindOutput() {
         
-        self.viewModel.output.novelListModel
+        self.viewModel.output.novels
             .bind { [weak self] _ in
                 self?.tableView.reloadData()
             }
@@ -67,12 +74,11 @@ extension NovelListViewController {
 extension NovelListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.output.novelListModel.value?.novels.count ?? 0
+        return self.viewModel.output.novels.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let items = self.viewModel.output.novelListModel.value?.novels,
-            let item = items[safe: indexPath.row] else {
+        guard let item = self.viewModel.output.novels.value[safe: indexPath.row] else {
                 return UITableViewCell()
         }
         let cell = self.novelListCell(tableView.dequeueReusableCell(for: indexPath), data: item)
@@ -92,3 +98,5 @@ extension NovelListViewController: UITableViewDataSource {
         return cell
     }
 }
+
+extension NovelListViewController: UITableViewDelegate {}

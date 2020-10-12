@@ -16,7 +16,7 @@ enum NovelListAPIDataStoreProvider {
 }
 
 protocol NovelListAPIDataStore {
-    func get() -> Single<NovelListResponse>
+    func get(limit: Int, offset: Int) -> Single<NovelListResponse>
 }
 
 private struct NovelListAPIDataStoreImpl: NovelListAPIDataStore {
@@ -27,7 +27,7 @@ private struct NovelListAPIDataStoreImpl: NovelListAPIDataStore {
         self.session = session
     }
     
-    func get() -> Single<NovelListResponse> {
-        return self.session.rx.response(for: NovelListRequest())
+    func get(limit: Int, offset: Int) -> Single<NovelListResponse> {
+        return self.session.rx.response(for: NovelListRequest(limit: limit, offset: offset))
     }
 }

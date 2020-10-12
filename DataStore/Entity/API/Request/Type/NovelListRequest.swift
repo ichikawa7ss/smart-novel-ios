@@ -13,10 +13,14 @@ struct NovelListRequest: APIRequestable {
     typealias Response = NovelListResponse
     
     var method: HTTPMethod {
-        return .get
+        return .post // APIの仕様でデフォルトパラメータ以外で取得する場合はPOST
     }
     
     var path: String {
         return "/search-novel"
     }
+    
+    let limit: Int
+    
+    let offset: Int
 }
