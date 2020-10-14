@@ -20,7 +20,7 @@ public enum NovelListUseCaseProvider {
 }
 
 public protocol NovelListUseCase {
-    func get() -> Single<NovelListModel>
+    func get(limit: Int, offset: Int) -> Single<NovelListModel>
 }
 
 private struct NovelListUseCaseImpl: NovelListUseCase {
@@ -34,8 +34,8 @@ private struct NovelListUseCaseImpl: NovelListUseCase {
         self.novelListTranslator = novelListTranslator
     }
     
-    func get() -> Single<NovelListModel> {
-        return self.novelListTranslator.convert(from: self.novelListRepository.get())
+    func get(limit: Int, offset: Int) -> Single<NovelListModel> {
+        return self.novelListTranslator.convert(from: self.novelListRepository.get(limit: limit, offset: offset))
     }
 }
 
