@@ -44,6 +44,13 @@ extension SearchViewController {
 extension SearchViewController {
 
     private func bindOutput() {
+
+        self.viewModel.output.novels
+            .bind { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .disposed(by: disposeBag)
+
     }
 }
 
@@ -58,6 +65,7 @@ extension SearchViewController: SlideSearchHeaderViewDelegate {
     }
     
     func slideSearchHeaderView(_ searchHeaderView: SlideSearchHeaderView, didEnterTextField: UITextField) {
+        self.viewModel.input.accept(didEnterTextField.text ?? "", for: \.didTapSearchNovel)
         print("didEnterTextField")
     }
     
