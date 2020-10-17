@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Domain
+import RxCocoa
+import RxSwift
 
 final class SearchViewController: UIViewController {
 
@@ -21,7 +24,8 @@ final class SearchViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView! {
         willSet {
-            newValue.register(NovelListCell.self)
+            newValue.register(SearchCandidateTagHeaderCell.self)
+            newValue.register(SearchCandidateTagCell.self)
         }
     }
     
@@ -37,6 +41,12 @@ final class SearchViewController: UIViewController {
 extension SearchViewController {
 
     private func bindInput() {
+        
+        self.rx.viewWillAppear
+            .take(1) // 初回のみ
+            .map { _ in }
+            .bind(to: self.viewModel.input.viewWillAppear)
+            .disposed(by: self.disposeBag)
     }
 }
 
@@ -45,12 +55,50 @@ extension SearchViewController {
 
     private func bindOutput() {
 
-        self.viewModel.output.novels
+        self.viewModel.output.tags
             .bind { [weak self] _ in
                 self?.tableView.reloadData()
             }
             .disposed(by: disposeBag)
 
+    }
+}
+
+extension SearchViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.output.tags.value.count + 1 // ヘッダーセル分+1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        if indexPath.row == 0 {
+            let cell = self.searchCandidateTagHeaderCell(tableView.dequeueReusableCell(for: indexPath))
+            return cell
+        }
+        
+        guard let item = self.viewModel.output.tags.value[safe: indexPath.row - 1] else {
+                return UITableViewCell()
+        }
+        let cell = self.searchCandidateTagCell(tableView.dequeueReusableCell(for: indexPath), data: item)
+        return cell
+    }
+
+    private func searchCandidateTagHeaderCell(_ cell: SearchCandidateTagHeaderCell) -> SearchCandidateTagHeaderCell {
+        return cell
+    }
+
+    private func searchCandidateTagCell(_ cell: SearchCandidateTagCell, data: NovelListModel.Novel.Tag) -> SearchCandidateTagCell {
+
+        cell.setData(data)
+        
+        cell.cellDidTapRelay
+            .bind(onNext: { [weak self] tag in
+                self?.viewModel.input.didTapCandidateTagCell(tag)
+            })
+            .disposed(by: cell.disposeBag)
+        
+        return cell
     }
 }
 

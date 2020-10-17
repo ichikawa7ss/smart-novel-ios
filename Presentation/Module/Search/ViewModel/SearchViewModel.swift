@@ -29,15 +29,17 @@ final class SearchViewModel: UnioStream<SearchViewModel>, SearchViewModelType  {
 extension SearchViewModel {
 
     struct Input: InputType {
-         let didTapSearchNovel = PublishRelay<String>()
+        let viewWillAppear = PublishRelay<Void>()
+        let didTapSearchNovel = PublishRelay<String>()
+        let didTapCandidateTagCell = PublishRelay<NovelListModel.Novel.Tag>()
     }
 
     struct Output: OutputType {
-        let novels: BehaviorRelay<[NovelListModel.Novel]>
+        let tags: BehaviorRelay<[NovelListModel.Novel.Tag]>
     }
     
     struct State: StateType {
-        let novels = BehaviorRelay<[NovelListModel.Novel]>(value: [])
+        let tags = BehaviorRelay<[NovelListModel.Novel.Tag]>(value: [])
     }
 
     struct Extra: ExtraType {
@@ -53,27 +55,25 @@ extension SearchViewModel {
         let state = dependency.state
         let extra = dependency.extra
         
-        let fetchData = Action<String, NovelListModel> { text in
-            extra.useCase.get(text: text)
-        }
+        input.viewWillAppear
+            .flatMap { extra.useCase.getCandidateTags() }
+            .bind(to: state.tags)
+            .disposed(by: disposeBag)
         
         input.didTapSearchNovel
             .bind(onNext: { text in
-                fetchData.execute(text)
+                // TODO: 画面遷移
+            })
+            .disposed(by: disposeBag)
+                
+        input.didTapCandidateTagCell
+            .bind(onNext: { tag in
+                // TODO: 画面遷移
             })
             .disposed(by: disposeBag)
         
-        fetchData.elements
-            .flatMap { model -> BehaviorRelay<[NovelListModel.Novel]> in
-                var retNovels = state.novels.value
-                retNovels += model.novels
-                return BehaviorRelay(value: retNovels)
-            }
-            .bind(to: state.novels)
-            .disposed(by: disposeBag)
-        
         return Output(
-            novels: state.novels
+            tags: state.tags
         )
     }
 }

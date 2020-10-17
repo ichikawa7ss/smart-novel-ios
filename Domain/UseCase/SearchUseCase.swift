@@ -21,6 +21,7 @@ public enum SearchUseCaseProvider {
 
 public protocol SearchUseCase {
     func get(text: String) -> Single<NovelListModel>
+    func getCandidateTags() -> Observable<[NovelListModel.Novel.Tag]>
 }
 
 private struct SearchUseCaseImpl: SearchUseCase {
@@ -36,6 +37,21 @@ private struct SearchUseCaseImpl: SearchUseCase {
     
     func get(text: String) -> Single<NovelListModel> {
         return self.novelListTranslator.convert(from: self.novelListRepository.get(text: text))
+    }
+    
+    func getCandidateTags() -> Observable<[NovelListModel.Novel.Tag]> {
+        let tags: [NovelListModel.Novel.Tag] = [
+            .init(name: "ファンタジー"),
+            .init(name: "ラブコメ"),
+            .init(name: "SF"),
+            .init(name: "BL"),
+            .init(name: "恋愛"),
+            .init(name: "異世界ファンタジー"),
+            .init(name: "現代ファンタジー"),
+            .init(name: "歴史・時代"),
+            .init(name: "エッセイ・ノンフィクション"),
+        ]
+        return .just(tags)
     }
 }
 
