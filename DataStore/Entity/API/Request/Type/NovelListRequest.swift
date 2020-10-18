@@ -20,7 +20,21 @@ struct NovelListRequest: APIRequestable {
         return "/search-novel"
     }
     
+    init(limit: Int, offset: Int) {
+        self.limit = limit
+        self.offset = offset
+        self.text = ""
+    }
+    
+    init(text: String) {
+        self.limit = 20
+        self.offset = 0
+        self.text = text
+    }
+    
     let limit: Int
     
     let offset: Int
+    
+    let text: String
 }

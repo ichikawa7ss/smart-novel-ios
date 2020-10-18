@@ -71,6 +71,11 @@ extension NovelListModel.Novel {
     public struct Tag {
         public let name: String
     }
+    
+    public enum SortField: String, CaseIterable {
+        case latest
+        case score
+    }
 }
 
 extension NovelListModel.Novel.Tag {
