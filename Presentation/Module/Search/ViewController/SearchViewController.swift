@@ -24,6 +24,7 @@ final class SearchViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView! {
         willSet {
+            newValue.register(SortFilterCell.self)
             newValue.register(SearchCandidateTagHeaderCell.self)
             newValue.register(SearchCandidateTagCell.self)
         }
@@ -67,20 +68,37 @@ extension SearchViewController {
 extension SearchViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.output.tags.value.count + 1 // ヘッダーセル分+1
+        return self.viewModel.output.tags.value.count + 2 // ソートセルとヘッダーセルの分 +2する
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.row == 0 {
+            let cell = self.sortFilterCell(tableView.dequeueReusableCell(for: indexPath))
+            return cell
+        }
+        
+        if indexPath.row == 1 {
             let cell = self.searchCandidateTagHeaderCell(tableView.dequeueReusableCell(for: indexPath))
             return cell
         }
         
-        guard let item = self.viewModel.output.tags.value[safe: indexPath.row - 1] else {
+        guard let item = self.viewModel.output.tags.value[safe: indexPath.row - 2] else {
                 return UITableViewCell()
         }
         let cell = self.searchCandidateTagCell(tableView.dequeueReusableCell(for: indexPath), data: item)
+        return cell
+    }
+
+    private func sortFilterCell(_ cell: SortFilterCell) -> SortFilterCell {
+        cell.setData(text: "新着順")
+        
+        cell.changeSortFiledDidTapRelay
+            .bind(onNext: { [weak self] _ in
+                self?.viewModel.input.didTapChangeSortFieldView(())
+            })
+            .disposed(by: self.disposeBag)
+        
         return cell
     }
 

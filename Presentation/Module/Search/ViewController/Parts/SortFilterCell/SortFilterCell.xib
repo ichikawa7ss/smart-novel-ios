@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SortFilterCell" customModule="Presentation" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新着順" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4m-GZ-U7b">
+                        <rect key="frame" x="16" y="14" width="48" height="16"/>
+                        <gestureRecognizers/>
+                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5jg-6e-3gH">
+                        <rect key="frame" x="224" y="0.0" width="80" height="44"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up.arrow.down.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MPd-I1-Hw2">
+                                <rect key="frame" x="4" y="13" width="20" height="17.5"/>
+                                <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MPd-I1-Hw2" secondAttribute="height" multiplier="1:1" id="wOh-d6-Brx"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="並び替え" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2a4-z5-cQd">
+                                <rect key="frame" x="28" y="15" width="56" height="14"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="MPd-I1-Hw2" firstAttribute="leading" secondItem="5jg-6e-3gH" secondAttribute="leading" constant="4" id="YqG-2Z-yia"/>
+                            <constraint firstAttribute="width" constant="80" id="bF7-ax-ct0"/>
+                            <constraint firstItem="2a4-z5-cQd" firstAttribute="leading" secondItem="MPd-I1-Hw2" secondAttribute="trailing" constant="4" id="ggl-Dd-ITZ"/>
+                            <constraint firstItem="MPd-I1-Hw2" firstAttribute="top" secondItem="5jg-6e-3gH" secondAttribute="top" constant="12" id="lN5-9I-KHj"/>
+                            <constraint firstItem="2a4-z5-cQd" firstAttribute="centerY" secondItem="5jg-6e-3gH" secondAttribute="centerY" id="mbE-Xj-98y"/>
+                            <constraint firstAttribute="bottom" secondItem="MPd-I1-Hw2" secondAttribute="bottom" constant="12" id="xUK-0l-0HK"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="5jg-6e-3gH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="68B-pS-qYs"/>
+                    <constraint firstItem="F4m-GZ-U7b" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="G88-4z-VZQ"/>
+                    <constraint firstAttribute="trailing" secondItem="5jg-6e-3gH" secondAttribute="trailing" constant="16" id="dha-ID-OMW"/>
+                    <constraint firstItem="F4m-GZ-U7b" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="h6v-gz-y9E"/>
+                    <constraint firstAttribute="bottom" secondItem="5jg-6e-3gH" secondAttribute="bottom" id="jZC-ks-Mnb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="changeSortFieldView" destination="5jg-6e-3gH" id="qhG-XY-ap3"/>
+                <outlet property="sortFieldLabel" destination="F4m-GZ-U7b" id="IT6-od-yh7"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="95.758928571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="arrow.up.arrow.down.square" catalog="system" width="128" height="114"/>
+    </resources>
+</document>

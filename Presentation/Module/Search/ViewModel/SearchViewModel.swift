@@ -32,6 +32,7 @@ extension SearchViewModel {
         let viewWillAppear = PublishRelay<Void>()
         let didTapSearchNovel = PublishRelay<String>()
         let didTapCandidateTagCell = PublishRelay<NovelListModel.Novel.Tag>()
+        let didTapChangeSortFieldView  = PublishRelay<Void>()
     }
 
     struct Output: OutputType {
@@ -69,6 +70,12 @@ extension SearchViewModel {
         input.didTapCandidateTagCell
             .bind(onNext: { tag in
                 // TODO: 画面遷移
+            })
+            .disposed(by: disposeBag)
+        
+        input.didTapChangeSortFieldView
+            .bind(onNext: { _ in
+                 // TODO: アクションシートを出す
             })
             .disposed(by: disposeBag)
         
