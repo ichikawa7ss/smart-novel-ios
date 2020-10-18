@@ -30,6 +30,7 @@ class SearchCandidateTagCell: UITableViewCell {
     }
     
     func setData(_ tag: NovelListModel.Novel.Tag) {
+        self.myTag = tag
         self.tagNameLabel.text = tag.name
     }
     
