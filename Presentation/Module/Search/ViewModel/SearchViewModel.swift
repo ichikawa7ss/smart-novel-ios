@@ -33,14 +33,18 @@ extension SearchViewModel {
         let didTapSearchNovel = PublishRelay<String>()
         let didTapCandidateTagCell = PublishRelay<NovelListModel.Novel.Tag>()
         let didTapChangeSortFieldView  = PublishRelay<Void>()
+        let didSelectSortsField = PublishRelay<NovelListModel.Novel.SortField>()
     }
 
     struct Output: OutputType {
         let tags: BehaviorRelay<[NovelListModel.Novel.Tag]>
+        let tapSortsView: PublishRelay<[NovelListModel.Novel.SortField]>
     }
     
     struct State: StateType {
         let tags = BehaviorRelay<[NovelListModel.Novel.Tag]>(value: [])
+        let tapSortsView = PublishRelay<[NovelListModel.Novel.SortField]>()
+        let selectSorts = PublishRelay<NovelListModel.Novel.SortField>()
     }
 
     struct Extra: ExtraType {
@@ -74,13 +78,17 @@ extension SearchViewModel {
             .disposed(by: disposeBag)
         
         input.didTapChangeSortFieldView
-            .bind(onNext: { _ in
-                 // TODO: アクションシートを出す
-            })
+            .flatMap { extra.useCase.getSortField() }
+            .bind(to: state.tapSortsView)
+            .disposed(by: disposeBag)
+        
+        input.didSelectSortsField
+            .bind(to: state.selectSorts)
             .disposed(by: disposeBag)
         
         return Output(
-            tags: state.tags
+            tags: state.tags,
+            tapSortsView: state.tapSortsView
         )
     }
 }

@@ -22,6 +22,7 @@ public enum SearchUseCaseProvider {
 public protocol SearchUseCase {
     func get(text: String) -> Single<NovelListModel>
     func getCandidateTags() -> Observable<[NovelListModel.Novel.Tag]>
+    func getSortField() -> Observable<[NovelListModel.Novel.SortField]>
 }
 
 private struct SearchUseCaseImpl: SearchUseCase {
@@ -52,6 +53,10 @@ private struct SearchUseCaseImpl: SearchUseCase {
             .init(name: "エッセイ・ノンフィクション"),
         ]
         return .just(tags)
+    }
+    
+    func getSortField() -> Observable<[NovelListModel.Novel.SortField]> {
+        return .just(NovelListModel.Novel.SortField.allCases)
     }
 }
 

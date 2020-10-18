@@ -11,7 +11,7 @@ import Domain
 import RxCocoa
 import RxSwift
 
-final class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController, ShowActionSheetView {
 
     var viewModel: SearchViewModelType!
 
@@ -60,8 +60,17 @@ extension SearchViewController {
             .bind { [weak self] _ in
                 self?.tableView.reloadData()
             }
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
 
+        self.viewModel.output.tapSortsView
+            .bind(onNext: { [weak self] sortsField in
+                // アクションシート表示
+                self?.showActionSheet(title: nil, message: nil, items: sortsField, completion: { item in
+                    self?.viewModel.input.accept(item, for: \.didSelectSortsField)
+                })
+            })
+            .disposed(by: self.disposeBag)
+        
     }
 }
 
