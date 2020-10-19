@@ -73,7 +73,7 @@ extension SearchViewModel {
                 
         input.didTapCandidateTagCell
             .bind(onNext: { tag in
-                // TODO: 画面遷移
+                extra.wireframe.pushSearchResult()
             })
             .disposed(by: disposeBag)
         
