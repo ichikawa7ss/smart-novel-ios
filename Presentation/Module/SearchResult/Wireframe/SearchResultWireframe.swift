@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SearchResultWireframe: AnyObject {}
+protocol SearchResultWireframe: TransitToNovelDetailWebWireframe {}
 
 final class SearchResultWireframeImpl: SearchResultWireframe {
 

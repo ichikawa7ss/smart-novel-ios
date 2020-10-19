@@ -12,13 +12,13 @@ protocol TransitToSearchResultWireframe: AnyObject {
 
     var viewController: UIViewController? { get }
 
-     func pushSearchResult()
+     func pushSearchResult(searchCondition: SearchTransitType)
 }
 
 extension TransitToSearchResultWireframe {
 
-    func pushSearchResult() {
-        let vc = SearchResultBuilder.build()
+    func pushSearchResult(searchCondition: SearchTransitType) {
+        let vc = SearchResultBuilder.build(searchCondition: searchCondition)
         // navigationを復活させておく
         self.viewController?.navigationController?.setNavigationBarHidden(false, animated: false)
         self.viewController?.navigationController?.pushViewController(vc, animated: true)

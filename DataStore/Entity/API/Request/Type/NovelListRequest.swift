@@ -28,17 +28,17 @@ struct NovelListRequest: APIRequestable {
         self.order = "latest"
     }
     
-    init(text: String, order: String) {
-        self.limit = 20
-        self.offset = 0
+    init(text: String, order: String, limit: Int, offset: Int) {
+        self.limit = limit
+        self.offset = offset
         self.searchText = text
         self.genre = ""
         self.order = order
     }
     
-    init(genre: String, order: String) {
-        self.limit = 20
-        self.offset = 0
+    init(genre: String, order: String, limit: Int, offset: Int) {
+        self.limit = limit
+        self.offset = offset
         self.searchText = ""
         self.genre = genre
         self.order = order

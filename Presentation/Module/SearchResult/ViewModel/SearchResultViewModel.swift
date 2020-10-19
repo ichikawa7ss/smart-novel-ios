@@ -30,22 +30,27 @@ extension SearchResultViewModel {
 
     struct Input: InputType {
         let viewWillAppear = PublishRelay<Void>()
+        let reachedBottom = PublishRelay<Void>()
+        let tapNovelListCell = PublishRelay<NovelListModel.Novel>()
         let didTapChangeSortFieldView  = PublishRelay<Void>()
         let didSelectSortsField = PublishRelay<NovelListModel.Novel.SortField>()
     }
 
     struct Output: OutputType {
+        let novels: BehaviorRelay<[NovelListModel.Novel]>
         let tapSortsView: PublishRelay<[NovelListModel.Novel.SortField]>
     }
     
     struct State: StateType {
+        let novels = BehaviorRelay<[NovelListModel.Novel]>(value: [])
         let tapSortsView = PublishRelay<[NovelListModel.Novel.SortField]>()
-        let selectSorts = PublishRelay<NovelListModel.Novel.SortField>()
+        let selectSorts = BehaviorRelay<NovelListModel.Novel.SortField>(value: .latest)
     }
 
     struct Extra: ExtraType {
         let wireframe: SearchResultWireframe
         let useCase: SearchResultUseCase
+        let searchCondition: SearchTransitType
     }
 }
 
@@ -56,20 +61,49 @@ extension SearchResultViewModel {
         let state = dependency.state
         let extra = dependency.extra
         
-        let fetchDataWithWord = Action<(text: String, order: NovelListModel.Novel.SortField), NovelListModel> { args in
-            extra.useCase.get(text: args.text, order: args.order)
+        let fetchDataWithWord = Action<(text: String, order: NovelListModel.Novel.SortField, limit: Int, offset: Int), NovelListModel> { args in
+            extra.useCase.get(text: args.text, order: args.order, limit: args.limit, offset: args.offset)
         }
         
-        let fetchSpecificGenre = Action<(genre: String, order: NovelListModel.Novel.SortField), NovelListModel> { args in
-            extra.useCase.get(genre: args.genre, order: args.order)
+        let fetchSpecificGenre = Action<(genre: String, order: NovelListModel.Novel.SortField, limit: Int, offset: Int), NovelListModel> { args in
+            extra.useCase.get(genre: args.genre, order: args.order, limit: args.limit, offset: args.offset)
         }
         
-        input.viewWillAppear
-            .bind(onNext: { _ in
-                // fetchAction
+        Observable.merge(
+            input.viewWillAppear,
+            input.reachedBottom
+        )
+            .flatMap { state.selectSorts }
+            .bind(onNext: { sortFiled in
+                switch extra.searchCondition {
+                case .text(let text):
+                    fetchDataWithWord.execute((text: text, order: sortFiled, limit: 20, offset: state.novels.value.count))
+                case .genre(let genre):
+                    fetchSpecificGenre.execute((genre: genre, order: sortFiled, limit: 20, offset: state.novels.value.count))
+                }
             })
             .disposed(by: disposeBag)
         
+        Observable.merge(
+            fetchDataWithWord.elements,
+            fetchSpecificGenre.elements
+        )
+            .flatMap { model -> BehaviorRelay<[NovelListModel.Novel]> in
+                var retNovels = state.novels.value
+                retNovels += model.novels
+                return BehaviorRelay(value: retNovels)
+            }
+            .bind(to: state.novels)
+            .disposed(by: disposeBag)
+        
+        input.tapNovelListCell
+            .map { $0.novelDetailUrl } // FIXME: できればURLのチェック機構を入れたい
+            .filterNil()
+            .bind(onNext:  { url in
+                extra.wireframe.pushNovelDetailWeb(url: url)
+            })
+            .disposed(by: disposeBag)
+
         input.didTapChangeSortFieldView
             .flatMap { extra.useCase.getSortField() }
             .bind(to: state.tapSortsView)
@@ -82,6 +116,7 @@ extension SearchResultViewModel {
             .disposed(by: disposeBag)
         
         return Output(
+            novels: state.novels,
             tapSortsView: state.tapSortsView
         )
     }

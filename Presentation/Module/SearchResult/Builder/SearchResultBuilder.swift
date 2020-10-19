@@ -11,7 +11,7 @@ import Domain
 
 enum SearchResultBuilder {
 
-    static func build() -> UIViewController {
+    static func build(searchCondition: SearchTransitType) -> UIViewController {
         let viewController = SearchResultViewController.instantiate()
         let wireframe = SearchResultWireframeImpl()
 
@@ -20,7 +20,8 @@ enum SearchResultBuilder {
         let viewModel = SearchResultViewModel(
             extra: .init(
                 wireframe: wireframe,
-                useCase: SearchResultUseCaseProvider.provide()
+                useCase: SearchResultUseCaseProvider.provide(),
+                searchCondition: searchCondition
             )
         )
 
