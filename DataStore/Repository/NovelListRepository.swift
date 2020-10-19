@@ -17,7 +17,8 @@ public enum NovelListRepositoryProvider {
 
 public protocol NovelListRepository {
     func get(limit: Int, offset: Int) -> Single<NovelListResponse>
-    func get(text: String) -> Single<NovelListResponse>
+    func get(text: String, order: String) -> Single<NovelListResponse>
+    func get(genre: String, order: String) -> Single<NovelListResponse>
 }
 
 private struct NovelListRepositoryImpl: NovelListRepository {
@@ -32,7 +33,11 @@ private struct NovelListRepositoryImpl: NovelListRepository {
         return api.get(limit: limit, offset: offset)
     }
     
-    func get(text: String) -> Single<NovelListResponse> {
-        return api.get(text: text)
+    func get(text: String, order: String) -> Single<NovelListResponse> {
+        return api.get(text: text, order: order)
+    }
+    
+    func get(genre: String, order: String) -> Single<NovelListResponse> {
+        return api.get(genre: genre, order: order)
     }
 }

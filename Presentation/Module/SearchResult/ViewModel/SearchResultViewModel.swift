@@ -10,6 +10,7 @@ import Action
 import RxCocoa
 import RxSwift
 import Unio
+import Domain
 
 protocol SearchResultViewModelType: AnyObject {
     var input: InputWrapper<SearchResultViewModel.Input> { get }
@@ -28,23 +29,23 @@ final class SearchResultViewModel: UnioStream<SearchResultViewModel>, SearchResu
 extension SearchResultViewModel {
 
     struct Input: InputType {
-        // e.g.
-        // let viewWillAppear = PublishRelay<Void>()
+        let viewWillAppear = PublishRelay<Void>()
+        let didTapChangeSortFieldView  = PublishRelay<Void>()
+        let didSelectSortsField = PublishRelay<NovelListModel.Novel.SortField>()
     }
 
     struct Output: OutputType {
-        // e.g.
-        // let reloadAll: Observable<Void>
-        // let sections: BehaviorRelay<[SearchResultViewController.Section]>
+        let tapSortsView: PublishRelay<[NovelListModel.Novel.SortField]>
     }
     
     struct State: StateType {
-        // e.g.
-        // let networkState = PublishRelay<NetworkState>()
+        let tapSortsView = PublishRelay<[NovelListModel.Novel.SortField]>()
+        let selectSorts = PublishRelay<NovelListModel.Novel.SortField>()
     }
 
     struct Extra: ExtraType {
         let wireframe: SearchResultWireframe
+        let useCase: SearchResultUseCase
     }
 }
 
@@ -53,9 +54,35 @@ extension SearchResultViewModel {
     static func bind(from dependency: Dependency<Input, State, Extra>, disposeBag: DisposeBag) -> Output {
         let input = dependency.inputObservables
         let state = dependency.state
-        var extra = dependency.extra
+        let extra = dependency.extra
+        
+        let fetchDataWithWord = Action<(text: String, order: NovelListModel.Novel.SortField), NovelListModel> { args in
+            extra.useCase.get(text: args.text, order: args.order)
+        }
+        
+        let fetchSpecificGenre = Action<(genre: String, order: NovelListModel.Novel.SortField), NovelListModel> { args in
+            extra.useCase.get(genre: args.genre, order: args.order)
+        }
+        
+        input.viewWillAppear
+            .bind(onNext: { _ in
+                // fetchAction
+            })
+            .disposed(by: disposeBag)
+        
+        input.didTapChangeSortFieldView
+            .flatMap { extra.useCase.getSortField() }
+            .bind(to: state.tapSortsView)
+            .disposed(by: disposeBag)
+        
+        input.didSelectSortsField
+            .bind(onNext: { _ in
+                // fetchAction
+            })
+            .disposed(by: disposeBag)
         
         return Output(
+            tapSortsView: state.tapSortsView
         )
     }
 }

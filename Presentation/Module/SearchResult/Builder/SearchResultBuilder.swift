@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Domain
 
 enum SearchResultBuilder {
 
@@ -18,7 +19,8 @@ enum SearchResultBuilder {
 
         let viewModel = SearchResultViewModel(
             extra: .init(
-                wireframe: wireframe
+                wireframe: wireframe,
+                useCase: SearchResultUseCaseProvider.provide()
             )
         )
 
