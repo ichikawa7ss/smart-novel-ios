@@ -33,8 +33,13 @@ final class SearchViewController: UIViewController, ShowActionSheetView {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setup()
         self.bindInput()
         self.bindOutput()
+    }
+    
+    private func setup() {
+        
     }
 }
 
@@ -42,6 +47,13 @@ final class SearchViewController: UIViewController, ShowActionSheetView {
 extension SearchViewController {
 
     private func bindInput() {
+        
+        self.rx.viewWillAppear
+            .map { _ in }
+            .bind(onNext: { [weak self] _ in
+                self?.navigationController?.setNavigationBarHidden(true, animated: true)
+            })
+            .disposed(by: self.disposeBag)
         
         self.rx.viewWillAppear
             .take(1) // 初回のみ

@@ -13,12 +13,13 @@ protocol APIRequestable: Request, Encodable {}
 extension APIRequestable {
     
     var baseURL: URL {
-        // qiita
         return URL(string: "https://31qlocs8rf.execute-api.ap-northeast-1.amazonaws.com/default")!
     }
     
     var parameters: Any? {
-        return JSONEncoder().encodeToDictionary(self)
+        let encoder = JSONEncoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder.encodeToDictionary(self)
     }
 
     var dataParser: DataParser {

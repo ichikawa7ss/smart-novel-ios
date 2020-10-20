@@ -23,18 +23,34 @@ struct NovelListRequest: APIRequestable {
     init(limit: Int, offset: Int) {
         self.limit = limit
         self.offset = offset
-        self.text = ""
+        self.searchText = ""
+        self.genre = ""
+        self.order = "latest"
     }
     
-    init(text: String) {
-        self.limit = 20
-        self.offset = 0
-        self.text = text
+    init(text: String, order: String, limit: Int, offset: Int) {
+        self.limit = limit
+        self.offset = offset
+        self.searchText = text
+        self.genre = ""
+        self.order = order
+    }
+    
+    init(genre: String, order: String, limit: Int, offset: Int) {
+        self.limit = limit
+        self.offset = offset
+        self.searchText = ""
+        self.genre = genre
+        self.order = order
     }
     
     let limit: Int
     
     let offset: Int
     
-    let text: String
+    let searchText: String
+    
+    let genre: String
+    
+    let order: String
 }

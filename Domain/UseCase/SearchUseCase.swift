@@ -12,34 +12,17 @@ import RxSwift
 public enum SearchUseCaseProvider {
     
     public static func provide() -> SearchUseCase {
-        return SearchUseCaseImpl(
-            novelListRepository: NovelListRepositoryProvider.provide(),
-            novelListTranslator: NovelListTranslatorProvider.provide()
-        )
+        return SearchUseCaseImpl()
     }
 }
 
 public protocol SearchUseCase {
-    func get(text: String) -> Single<NovelListModel>
     func getCandidateTags() -> Observable<[NovelListModel.Novel.Tag]>
     func getSortField() -> Observable<[NovelListModel.Novel.SortField]>
 }
 
 private struct SearchUseCaseImpl: SearchUseCase {
 
-    private let novelListRepository: NovelListRepository
-    
-    private let novelListTranslator: NovelListTranslator
-    
-    init(novelListRepository: NovelListRepository, novelListTranslator: NovelListTranslator) {
-        self.novelListRepository = novelListRepository
-        self.novelListTranslator = novelListTranslator
-    }
-    
-    func get(text: String) -> Single<NovelListModel> {
-        return self.novelListTranslator.convert(from: self.novelListRepository.get(text: text))
-    }
-    
     func getCandidateTags() -> Observable<[NovelListModel.Novel.Tag]> {
         let tags: [NovelListModel.Novel.Tag] = [
             .init(name: "ファンタジー"),

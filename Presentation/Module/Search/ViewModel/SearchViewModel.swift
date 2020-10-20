@@ -67,13 +67,13 @@ extension SearchViewModel {
         
         input.didTapSearchNovel
             .bind(onNext: { text in
-                // TODO: 画面遷移
+                extra.wireframe.pushSearchResult(searchCondition: .text(text: text))
             })
             .disposed(by: disposeBag)
                 
         input.didTapCandidateTagCell
             .bind(onNext: { tag in
-                // TODO: 画面遷移
+                extra.wireframe.pushSearchResult(searchCondition: .genre(genre: tag.name))
             })
             .disposed(by: disposeBag)
         
