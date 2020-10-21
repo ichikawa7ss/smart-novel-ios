@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = SmartNovelNavigationController(rootViewController: NovelListBuilder.build())
+        let navigationController = SmartNovelNavigationController(rootViewController: SearchBuilder.build())
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
 
