@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SwitchButtonView" customModule="Presentation" customModuleProvider="target">
+            <connections>
+                <outlet property="homeButton" destination="eFZ-ib-BN6" id="17J-cl-UDO"/>
+                <outlet property="searchButton" destination="SWz-AP-OMK" id="U6r-n7-nlh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yj6-c8-uxC">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="60"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFZ-ib-BN6">
+                            <rect key="frame" x="0.0" y="0.0" width="75" height="60"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SWz-AP-OMK">
+                            <rect key="frame" x="75" y="0.0" width="75" height="60"/>
+                            <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="yj6-c8-uxC" secondAttribute="bottom" id="1ao-yg-RFL"/>
+                <constraint firstItem="yj6-c8-uxC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Foz-c1-ILE"/>
+                <constraint firstItem="yj6-c8-uxC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="H3E-NZ-Ac3"/>
+                <constraint firstAttribute="trailing" secondItem="yj6-c8-uxC" secondAttribute="trailing" id="zhm-xF-Gtk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="141" y="92"/>
+        </view>
+    </objects>
+</document>

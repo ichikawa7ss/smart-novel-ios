@@ -14,7 +14,7 @@ final class RootViewController: UIViewController {
     var vcList: [UIViewController] = []
 
     @IBOutlet private weak var containerView: UIView!
-    @IBOutlet private weak var switchButtonView: UIView!
+    @IBOutlet private weak var switchButtonView: SwitchButtonView!
 
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ final class RootViewController: UIViewController {
 extension RootViewController {
 
     private func setup() {
-        self.setInnerViewController(tabIndex: 0)
+//        self.setInnerViewController(tabIndex: 0)
         // ボタン側のセットアップ
 //        self.bottomTabView.setup()
     }
