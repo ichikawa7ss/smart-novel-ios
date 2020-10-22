@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class RootViewController: UIViewController {
 
@@ -30,7 +31,7 @@ extension RootViewController {
     private func setup() {
 //        self.setInnerViewController(tabIndex: 0)
         // ボタン側のセットアップ
-//        self.bottomTabView.setup()
+        self.switchButtonView.setup()
     }
     
     private func setInnerViewController(tabIndex: Int) {
@@ -59,12 +60,11 @@ extension RootViewController {
     private func bindInput() {
 
         // タブタップ
-//        self.bottomTabView.selectedTabRelay
-//            .throttle(0.5, scheduler: MainScheduler.instance)
-//            .bind(onNext: { [weak self] selectedTab in
-//                self?.setInnerViewController(tabIndex: selectedTab)
-//            })
-//            .disposed(by: self.disposeBag)
+        self.switchButtonView.selectedTabRelay
+            .bind(onNext: { [weak self] selectedTab in
+                print("No. \(selectedTab.rawValue)")
+            })
+            .disposed(by: self.disposeBag)
     }
 }
 
