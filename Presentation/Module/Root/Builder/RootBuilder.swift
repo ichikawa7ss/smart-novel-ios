@@ -21,8 +21,14 @@ public enum RootBuilder {
                 wireframe: wireframe
             )
         )
+        
+        let vcList: [UIViewController] = [
+            NovelListBuilder.build(),
+            SearchBuilder.build()
+        ]
 
         viewController.viewModel = viewModel
+        viewController.vcList = vcList
 
         return viewController
     }

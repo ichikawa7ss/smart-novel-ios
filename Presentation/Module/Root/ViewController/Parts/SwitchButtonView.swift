@@ -14,7 +14,7 @@ final class SwitchButtonView: BaseView {
     @IBOutlet private weak var toHomeButtonView: HoverView!
     @IBOutlet private weak var toSearchButtonView: HoverView!
     
-    var selectedTabRelay = BehaviorRelay<TabIndex>(value: .toSearch)
+    var selectedDestinationButtonTypeRelay = BehaviorRelay<ContentType.DestinationButtonType>(value: .toSearch)
     
     func setup() {
         self.bind()
@@ -26,9 +26,9 @@ final class SwitchButtonView: BaseView {
             self.toSearchButtonViewTapped,
             self.toHomeButtonViewTapped
         )
-            .bind(onNext: { [weak self] selectedIndex in
-                self?.selectedTabRelay.accept(selectedIndex)
-                self?.rx.rotate.onNext(selectedIndex)
+            .bind(onNext: { [weak self] buttonType in
+                self?.selectedDestinationButtonTypeRelay.accept(buttonType)
+                self?.rx.rotate.onNext(buttonType)
             })
             .disposed(by: self.disposeBag)
     }
@@ -36,35 +36,26 @@ final class SwitchButtonView: BaseView {
 
 extension SwitchButtonView {
     
-    private var toSearchButtonViewTapped: Observable<TabIndex> {
-        return self.toSearchButtonView.didTouchUpInsideObservable.map { _ in TabIndex.toSearch }
+    private var toSearchButtonViewTapped: Observable<ContentType.DestinationButtonType> {
+        return self.toSearchButtonView.didTouchUpInsideObservable.map { _ in .toSearch }
     }
     
-    private var toHomeButtonViewTapped: Observable<TabIndex> {
-        return self.toHomeButtonView.didTouchUpInsideObservable.map { _ in TabIndex.toHome }
-    }
-}
-
-enum TabIndex: Int {
-    case toSearch
-    case toHome
-    
-    var index: Int {
-        return self.rawValue
+    private var toHomeButtonViewTapped: Observable<ContentType.DestinationButtonType> {
+        return self.toHomeButtonView.didTouchUpInsideObservable.map { _ in .toHome }
     }
 }
 
 extension Reactive where Base: SwitchButtonView {
     
-    var rotate: Binder<TabIndex> {
-        return Binder(base) { view, selectedIndex in
+    var rotate: Binder<ContentType.DestinationButtonType> {
+        return Binder(base) { view, type in
             UIView.animate(withDuration: 0.5) {
-                switch selectedIndex {
+                switch type {
                 case .toSearch:
-                    // デフォルトだったら時計回りで回転
+                    // 検索画面への遷移だったら時計回りで回転
                     view.transform = CGAffineTransform(rotationAngle: .pi * 0.999) // 反転時は時計回りにしたいので半回転しきらないようにしておく
                 case .toHome:
-                    // 既に反転してたらもとに反時計回りで戻す
+                    // ホーム画面への遷移だったら反時計回りで戻す
                     view.transform = .identity
                 }
             }

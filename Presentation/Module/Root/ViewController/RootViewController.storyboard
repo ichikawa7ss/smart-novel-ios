@@ -17,7 +17,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8V-Ha-2z2">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baN-pB-9fv">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="baN-pB-9fv" secondAttribute="bottom" id="29K-Ju-CpT"/>
+                                    <constraint firstItem="baN-pB-9fv" firstAttribute="top" secondItem="I8V-Ha-2z2" secondAttribute="top" id="6r9-dW-VuL"/>
+                                    <constraint firstItem="baN-pB-9fv" firstAttribute="leading" secondItem="I8V-Ha-2z2" secondAttribute="leading" id="JiQ-ZM-O8j"/>
+                                    <constraint firstAttribute="trailing" secondItem="baN-pB-9fv" secondAttribute="trailing" id="brA-Zu-pxn"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwV-NW-Zmk" customClass="SwitchButtonView" customModule="Presentation" customModuleProvider="target">
                                 <rect key="frame" x="339" y="787" width="150" height="150"/>
@@ -41,6 +53,7 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="I8V-Ha-2z2" id="PDQ-qm-r96"/>
+                        <outlet property="contentView" destination="baN-pB-9fv" id="pLG-iM-jcc"/>
                         <outlet property="switchButtonView" destination="rwV-NW-Zmk" id="Xxx-rD-FVU"/>
                     </connections>
                 </viewController>
