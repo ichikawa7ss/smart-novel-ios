@@ -33,7 +33,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwV-NW-Zmk" customClass="SwitchButtonView" customModule="Presentation" customModuleProvider="target">
                                 <rect key="frame" x="339" y="787" width="150" height="150"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="Atj-RP-3fS"/>
                                     <constraint firstAttribute="width" constant="150" id="hIq-Os-sDZ"/>

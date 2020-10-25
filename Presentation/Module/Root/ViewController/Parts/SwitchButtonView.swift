@@ -49,11 +49,11 @@ extension Reactive where Base: SwitchButtonView {
     
     var rotate: Binder<ContentType.DestinationButtonType> {
         return Binder(base) { view, type in
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.3) {
                 switch type {
                 case .toSearch:
                     // 検索画面への遷移だったら時計回りで回転
-                    view.transform = CGAffineTransform(rotationAngle: .pi * 0.999) // 反転時は時計回りにしたいので半回転しきらないようにしておく
+                    view.transform = CGAffineTransform(rotationAngle: -.pi * 0.999) // 反転時は時計回りにしたいので半回転しきらないようにしておく
                 case .toHome:
                     // ホーム画面への遷移だったら反時計回りで戻す
                     view.transform = .identity

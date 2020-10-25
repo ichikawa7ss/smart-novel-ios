@@ -40,13 +40,13 @@ extension RootViewController {
     /// - Parameter contentType: 表示するコンテンツ home/search
     private func setContentViewController(contentType: ContentType) {
         let vc = self.vcList[contentType.rawValue]
-        let navVC = UINavigationController(rootViewController: vc)
+        let navVC = SmartNovelNavigationController(rootViewController: vc)
         self.addChild(navVC)
         let currentView = self.containerView.subviews.first ?? UIView()
         UIView.transition(
             from: currentView,
             to: navVC.view,
-            duration: 0.2,
+            duration: 0.3,
             options: .transitionCrossDissolve,
             completion: { [weak self] _ in
                 guard let `self` = self else { return }
