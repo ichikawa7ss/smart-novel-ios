@@ -24,7 +24,7 @@ struct NovelListRequest: APIRequestable {
         self.limit = limit
         self.offset = offset
         self.searchText = ""
-        self.genre = ""
+        self.filters = [:]
         self.order = "latest"
     }
     
@@ -32,7 +32,7 @@ struct NovelListRequest: APIRequestable {
         self.limit = limit
         self.offset = offset
         self.searchText = text
-        self.genre = ""
+        self.filters = [:]
         self.order = order
     }
     
@@ -40,7 +40,7 @@ struct NovelListRequest: APIRequestable {
         self.limit = limit
         self.offset = offset
         self.searchText = ""
-        self.genre = genre
+        self.filters = ["genre": genre]
         self.order = order
     }
     
@@ -50,7 +50,7 @@ struct NovelListRequest: APIRequestable {
     
     let searchText: String
     
-    let genre: String
+    let filters: [String: String]
     
     let order: String
 }
