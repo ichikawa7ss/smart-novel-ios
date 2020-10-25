@@ -19,27 +19,62 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71T-Q2-Et5" customClass="HoverView" customModule="Presentation" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="h1z-G9-k3t">
-                            <rect key="frame" x="0.0" y="-0.5" width="60" height="59.5"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="h1z-G9-k3t">
+                            <rect key="frame" x="8" y="9" width="34" height="32"/>
+                            <color key="tintColor" red="0.96924716229999996" green="0.064876057210000004" blue="0.078770600260000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.96231049299240112" green="0.9324773662784025" blue="0.454374267794181" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="3ne-w5-y4p"/>
-                        <constraint firstItem="h1z-G9-k3t" firstAttribute="top" secondItem="71T-Q2-Et5" secondAttribute="top" id="Ncs-uc-tAs"/>
-                        <constraint firstAttribute="bottom" secondItem="h1z-G9-k3t" secondAttribute="bottom" id="W7S-er-d66"/>
-                        <constraint firstAttribute="trailing" secondItem="h1z-G9-k3t" secondAttribute="trailing" id="bfS-xq-TnP"/>
-                        <constraint firstAttribute="width" constant="60" id="xzV-P0-oXY"/>
-                        <constraint firstItem="h1z-G9-k3t" firstAttribute="leading" secondItem="71T-Q2-Et5" secondAttribute="leading" id="zf1-Hs-ArU"/>
+                        <constraint firstAttribute="height" constant="50" id="3ne-w5-y4p"/>
+                        <constraint firstItem="h1z-G9-k3t" firstAttribute="top" secondItem="71T-Q2-Et5" secondAttribute="top" constant="8" id="Ncs-uc-tAs"/>
+                        <constraint firstAttribute="bottom" secondItem="h1z-G9-k3t" secondAttribute="bottom" constant="8" id="W7S-er-d66"/>
+                        <constraint firstAttribute="trailing" secondItem="h1z-G9-k3t" secondAttribute="trailing" constant="8" id="bfS-xq-TnP"/>
+                        <constraint firstAttribute="width" constant="50" id="xzV-P0-oXY"/>
+                        <constraint firstItem="h1z-G9-k3t" firstAttribute="leading" secondItem="71T-Q2-Et5" secondAttribute="leading" constant="8" id="zf1-Hs-ArU"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="0.98737925289999995" green="0.83241838219999997" blue="0.13642343879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" id="4dm-6R-Vck" customClass="HoverView" customModule="Presentation" customModuleProvider="target">
-                    <rect key="frame" x="90" y="90" width="60" height="60"/>
+                    <rect key="frame" x="100" y="100" width="50" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="d7R-Yd-hvJ">
+                            <rect key="frame" x="8" y="7.5" width="34" height="33.5"/>
+                            <color key="tintColor" red="0.96924716229999996" green="0.064876057210000004" blue="0.078770600260000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96231049300000004" green="0.9324773663" blue="0.45437426780000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="d7R-Yd-hvJ" secondAttribute="trailing" constant="8" id="3LN-wk-MuF"/>
+                        <constraint firstItem="d7R-Yd-hvJ" firstAttribute="leading" secondItem="4dm-6R-Vck" secondAttribute="leading" constant="8" id="H8Z-Jf-fbk"/>
+                        <constraint firstItem="d7R-Yd-hvJ" firstAttribute="top" secondItem="4dm-6R-Vck" secondAttribute="top" constant="8" id="QbY-6W-32a"/>
+                        <constraint firstAttribute="bottom" secondItem="d7R-Yd-hvJ" secondAttribute="bottom" constant="8" id="l6e-1s-BMv"/>
+                    </constraints>
                     <viewLayoutGuide key="safeArea" id="w3V-hX-VPo"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="0.98737925289999995" green="0.83241838219999997" blue="0.13642343879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -53,5 +88,6 @@
     </objects>
     <resources>
         <image name="house" catalog="system" width="128" height="110"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
     </resources>
 </document>

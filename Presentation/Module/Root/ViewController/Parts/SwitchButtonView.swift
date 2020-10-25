@@ -18,6 +18,7 @@ final class SwitchButtonView: BaseView {
     
     func setup() {
         self.bind()
+        toHomeButtonView.transform = CGAffineTransform(rotationAngle: .pi) // 画像を反転させておく
     }
     
     private func bind() {
@@ -27,13 +28,9 @@ final class SwitchButtonView: BaseView {
         )
             .bind(onNext: { [weak self] selectedIndex in
                 self?.selectedTabRelay.accept(selectedIndex)
-                self?.rotateButtonView()
+                self?.rx.rotate.onNext(selectedIndex)
             })
             .disposed(by: self.disposeBag)
-    }
-    
-    private func rotateButtonView() {
-        // TODO: Impl
     }
 }
 
@@ -54,5 +51,23 @@ enum TabIndex: Int {
     
     var index: Int {
         return self.rawValue
+    }
+}
+
+extension Reactive where Base: SwitchButtonView {
+    
+    var rotate: Binder<TabIndex> {
+        return Binder(base) { view, selectedIndex in
+            UIView.animate(withDuration: 0.5) {
+                switch selectedIndex {
+                case .toSearch:
+                    // デフォルトだったら時計回りで回転
+                    view.transform = CGAffineTransform(rotationAngle: .pi * 0.999) // 反転時は時計回りにしたいので半回転しきらないようにしておく
+                case .toHome:
+                    // 既に反転してたらもとに反時計回りで戻す
+                    view.transform = .identity
+                }
+            }
+        }
     }
 }

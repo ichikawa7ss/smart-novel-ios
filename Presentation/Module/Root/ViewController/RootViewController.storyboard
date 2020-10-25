@@ -20,7 +20,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwV-NW-Zmk" customClass="SwitchButtonView" customModule="Presentation" customModuleProvider="target">
-                                <rect key="frame" x="132" y="662" width="150" height="150"/>
+                                <rect key="frame" x="339" y="787" width="150" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="Atj-RP-3fS"/>
@@ -30,10 +30,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="rwV-NW-Zmk" firstAttribute="centerX" secondItem="IUt-YS-sf0" secondAttribute="centerX" id="Fox-W2-Ecd"/>
+                            <constraint firstItem="rwV-NW-Zmk" firstAttribute="centerX" secondItem="IUt-YS-sf0" secondAttribute="trailing" id="Fox-W2-Ecd"/>
                             <constraint firstItem="I8V-Ha-2z2" firstAttribute="top" secondItem="ocb-Rq-set" secondAttribute="top" id="QXx-EM-Xqj"/>
                             <constraint firstItem="ocb-Rq-set" firstAttribute="trailing" secondItem="I8V-Ha-2z2" secondAttribute="trailing" id="VsF-Jt-hl4"/>
-                            <constraint firstItem="ocb-Rq-set" firstAttribute="bottom" secondItem="rwV-NW-Zmk" secondAttribute="bottom" constant="50" id="Y8s-qw-IEW"/>
+                            <constraint firstItem="ocb-Rq-set" firstAttribute="bottom" secondItem="rwV-NW-Zmk" secondAttribute="centerY" id="Y8s-qw-IEW"/>
                             <constraint firstItem="I8V-Ha-2z2" firstAttribute="leading" secondItem="ocb-Rq-set" secondAttribute="leading" id="cGw-JJ-E5C"/>
                             <constraint firstItem="ocb-Rq-set" firstAttribute="bottom" secondItem="I8V-Ha-2z2" secondAttribute="bottom" id="vKq-1f-geE"/>
                         </constraints>
