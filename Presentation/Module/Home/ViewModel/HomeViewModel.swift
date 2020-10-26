@@ -55,8 +55,8 @@ extension HomeViewModel {
         let state = dependency.state
         let extra = dependency.extra
         
-        let fetchData = Action<(limit: Int, offset: Int), NovelListModel> { args in
-            extra.useCase.get(limit: args.limit, offset: args.offset)
+        let fetchData = Action<Void, NovelListModel> { args in
+            extra.useCase.get()
         }
         
         Observable.merge (
@@ -64,7 +64,7 @@ extension HomeViewModel {
             input.reachedBottom
         )
             .bind(onNext: {
-                fetchData.execute((limit: 100, offset: state.novels.value.count))
+                fetchData.execute()
             })
             .disposed(by: disposeBag)
         

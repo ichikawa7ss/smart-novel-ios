@@ -13,29 +13,29 @@ public enum HomeUseCaseProvider {
     
     public static func provide() -> HomeUseCase {
         return HomeUseCaseImpl(
-            novelListRepository: NovelListRepositoryProvider.provide(),
+            randomNovelListRepository: RandomNovelListRepositoryProvider.provide(),
             novelListTranslator: NovelListTranslatorProvider.provide()
         )
     }
 }
 
 public protocol HomeUseCase {
-    func get(limit: Int, offset: Int) -> Single<NovelListModel>
+    func get() -> Single<NovelListModel>
 }
 
 private struct HomeUseCaseImpl: HomeUseCase {
 
-    private let novelListRepository: NovelListRepository
+    private let randomNovelListRepository: RandomNovelListRepository
     
     private let novelListTranslator: NovelListTranslator
     
-    init(novelListRepository: NovelListRepository, novelListTranslator: NovelListTranslator) {
-        self.novelListRepository = novelListRepository
+    init(randomNovelListRepository: RandomNovelListRepository, novelListTranslator: NovelListTranslator) {
+        self.randomNovelListRepository = randomNovelListRepository
         self.novelListTranslator = novelListTranslator
     }
     
-    func get(limit: Int, offset: Int) -> Single<NovelListModel> {
-        return self.novelListTranslator.convert(from: self.novelListRepository.get(limit: limit, offset: offset))
+    func get() -> Single<NovelListModel> {
+        return self.novelListTranslator.convert(from: self.randomNovelListRepository.get())
     }
 }
 
