@@ -35,7 +35,6 @@ class SlideSearchHeaderView: BaseView {
     @IBOutlet private weak var textFiledTrailingConstraints: NSLayoutConstraint!
     @IBOutlet private weak var headerTitleLabel: UILabel!
     @IBOutlet private weak var cancelButton: UIButton!
-    @IBOutlet private weak var separator: UIView!
     
     weak var delegate: SlideSearchHeaderViewDelegate?
 
@@ -95,7 +94,6 @@ extension SlideSearchHeaderView {
         // 各パーツのUI設定
         self.headerTitleLabel.isHidden = willSearch
         self.cancelButton.isHidden = !willSearch
-        self.separator.isHidden = !willSearch
         
         // SearchButtonGestureRecognizer
         self.searchButtonGestureRecognizer.isEnabled = !willSearch
@@ -113,7 +111,8 @@ extension SlideSearchHeaderView {
         self.searchButtonView.addSubview(textField)
         // テキストフィールドにフォーカス
         textField.becomeFirstResponder()
-        textField.placeholder = "Search My Animation"
+        textField.placeholder = "小説名やキーワードで検索"
+        textField.font = UIFont.systemFont(ofSize: 14)
         textField.tintColor = .gray
         
         textField.delegate = self

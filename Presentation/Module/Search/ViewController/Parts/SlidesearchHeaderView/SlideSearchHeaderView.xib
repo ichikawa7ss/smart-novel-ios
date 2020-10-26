@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SlideSearchHeaderView" customModule="UICatalog" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SlideSearchHeaderView" customModule="Presentation" customModuleProvider="target">
             <connections>
                 <outlet property="cancelButton" destination="O3M-Md-Awu" id="Scd-1o-qE9"/>
                 <outlet property="headerTitleLabel" destination="NSQ-ei-5oL" id="PQo-Fb-7c4"/>
@@ -15,7 +15,6 @@
                 <outlet property="searchButtonTrailingConstraints" destination="dE5-vZ-Spn" id="ARn-EJ-pfo"/>
                 <outlet property="searchButtonView" destination="giT-pM-lkp" id="xPB-w9-zEI"/>
                 <outlet property="searchButtonWidthConstraints" destination="Udf-zf-Md9" id="mWG-km-92p"/>
-                <outlet property="separator" destination="quk-Wu-D6l" id="UEO-mg-V1j"/>
                 <outlet property="textFiledLeadingConstraints" destination="wrs-Ce-uTg" id="awD-mw-Qch"/>
                 <outlet property="textFiledTrailingConstraints" destination="nHE-U1-R13" id="KlG-BK-iFv"/>
             </connections>
@@ -32,15 +31,17 @@
                         <constraint firstAttribute="height" constant="0.5" id="fN1-6G-EFl"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SearchAnimation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSQ-ei-5oL" userLabel="Header Title Label">
-                    <rect key="frame" x="16" y="16" width="166" height="18"/>
-                    <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="18"/>
-                    <color key="textColor" red="0.052038741440000001" green="0.50531073729999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SmartNovel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSQ-ei-5oL" userLabel="Header Title Label">
+                    <rect key="frame" x="16" y="14" width="118.5" height="22"/>
+                    <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="18"/>
+                    <color key="textColor" red="0.96924716229999996" green="0.064876057210000004" blue="0.078770600260000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3M-Md-Awu" userLabel="Cancel Button">
                     <rect key="frame" x="321" y="10" width="77" height="30"/>
-                    <state key="normal" title="キャンセル"/>
+                    <state key="normal" title="キャンセル">
+                        <color key="titleColor" red="0.96924716229999996" green="0.064876057210000004" blue="0.078770600260000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
                     <connections>
                         <action selector="tapCancelButton:" destination="-1" eventType="touchUpInside" id="s2k-tF-9fo"/>
                     </connections>
