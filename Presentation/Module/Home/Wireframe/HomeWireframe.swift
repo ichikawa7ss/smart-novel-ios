@@ -1,5 +1,5 @@
 //
-//  NovelListNovelListWireframe.swift
+//  HomeWireframe.swift
 //  smart-novel-ios
 //
 //  Created by ichikawa7ss on 24/08/2020.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol NovelListWireframe: TransitToNovelDetailWebWireframe {}
+protocol HomeWireframe: TransitToNovelDetailWebWireframe {}
 
-final class NovelListWireframeImpl: NovelListWireframe {
+final class HomeWireframeImpl: HomeWireframe {
 
     weak var viewController: UIViewController?
 }

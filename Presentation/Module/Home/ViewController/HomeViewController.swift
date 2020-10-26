@@ -1,5 +1,5 @@
 //
-//  NovelListNovelListViewController.swift
+//  HomeHomeViewController.swift
 //  smart-novel-ios
 //
 //  Created by ichikawa7ss on 24/08/2020.
@@ -11,9 +11,9 @@ import Domain
 import RxCocoa
 import RxSwift
 
-final class NovelListViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
-    var viewModel: NovelListViewModelType!
+    var viewModel: HomeViewModelType!
     
     @IBOutlet private weak var tableView: UITableView! {
         willSet {
@@ -39,7 +39,7 @@ final class NovelListViewController: UIViewController {
 }
 
 // MARK: - bind input
-extension NovelListViewController {
+extension HomeViewController {
 
     private func bindInput() {
         
@@ -58,7 +58,7 @@ extension NovelListViewController {
 }
     
 // MARK: - bind output
-extension NovelListViewController {
+extension HomeViewController {
 
     private func bindOutput() {
         
@@ -71,7 +71,7 @@ extension NovelListViewController {
     }
 }
 
-extension NovelListViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.viewModel.output.novels.value.count
@@ -99,4 +99,4 @@ extension NovelListViewController: UITableViewDataSource {
     }
 }
 
-extension NovelListViewController: UITableViewDelegate {}
+extension HomeViewController: UITableViewDelegate {}

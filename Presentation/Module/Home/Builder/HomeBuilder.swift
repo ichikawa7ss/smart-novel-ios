@@ -1,5 +1,5 @@
 //
-//  NovelListNovelListBuilder.swift
+//  HomeBuilder.swift
 //  smart-novel-ios
 //
 //  Created by ichikawa7ss on 24/08/2020.
@@ -9,18 +9,18 @@
 import UIKit
 import Domain
 
-public enum NovelListBuilder {
+public enum HomeBuilder {
 
     public static func build() -> UIViewController {
-        let viewController = NovelListViewController.instantiate()
-        let wireframe = NovelListWireframeImpl()
+        let viewController = HomeViewController.instantiate()
+        let wireframe = HomeWireframeImpl()
 
         wireframe.viewController = viewController
 
-        let viewModel = NovelListViewModel(
+        let viewModel = HomeViewModel(
             extra: .init(
                 wireframe: wireframe,
-                useCase: NovelListUseCaseProvider.provide()
+                useCase: HomeUseCaseProvider.provide()
             )
         )
 
