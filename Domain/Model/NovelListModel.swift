@@ -39,6 +39,8 @@ extension NovelListModel {
         public enum Site: String {
             case kakuyomu
             case alphapolis
+            case novelba
+            case syosetukaninarou
             
             public var colorCode: String {
                 switch self {
@@ -46,6 +48,10 @@ extension NovelListModel {
                     return "#4cace4"
                 case .alphapolis:
                     return "#f4a424"
+                case .novelba:
+                    return "#2CC199"
+                case .syosetukaninarou:
+                    return "#16B6CD"
                 }
             }
         }

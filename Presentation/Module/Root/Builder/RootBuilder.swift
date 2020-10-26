@@ -23,7 +23,7 @@ public enum RootBuilder {
         )
         
         let vcList: [UIViewController] = [
-            NovelListBuilder.build(),
+            HomeBuilder.build(),
             SearchBuilder.build()
         ]
 

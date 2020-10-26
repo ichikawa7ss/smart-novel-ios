@@ -1,5 +1,5 @@
 //
-//  NovelListNovelListViewModel.swift
+//  HomeViewModel.swift
 //  smart-novel-ios
 //
 //  Created by ichikawa7ss on 24/08/2020.
@@ -12,12 +12,12 @@ import RxSwift
 import Unio
 import Domain
 
-protocol NovelListViewModelType: AnyObject {
-    var input: InputWrapper<NovelListViewModel.Input> { get }
-    var output: OutputWrapper<NovelListViewModel.Output> { get }
+protocol HomeViewModelType: AnyObject {
+    var input: InputWrapper<HomeViewModel.Input> { get }
+    var output: OutputWrapper<HomeViewModel.Output> { get }
 }
 
-final class NovelListViewModel: UnioStream<NovelListViewModel>, NovelListViewModelType  {
+final class HomeViewModel: UnioStream<HomeViewModel>, HomeViewModelType  {
     
     init(extra: Extra) {
         super.init(input: Input(),
@@ -26,7 +26,7 @@ final class NovelListViewModel: UnioStream<NovelListViewModel>, NovelListViewMod
     }
 }
 
-extension NovelListViewModel {
+extension HomeViewModel {
     
     struct Input: InputType {
         let viewWillAppear = PublishRelay<Void>()
@@ -43,20 +43,20 @@ extension NovelListViewModel {
     }
     
     struct Extra: ExtraType {
-        let wireframe: NovelListWireframe
-        let useCase: NovelListUseCase
+        let wireframe: HomeWireframe
+        let useCase: HomeUseCase
     }
 }
 
-extension NovelListViewModel {
+extension HomeViewModel {
 
     static func bind(from dependency: Dependency<Input, State, Extra>, disposeBag: DisposeBag) -> Output {
         let input = dependency.inputObservables
         let state = dependency.state
         let extra = dependency.extra
         
-        let fetchData = Action<(limit: Int, offset: Int), NovelListModel> { args in
-            extra.useCase.get(limit: args.limit, offset: args.offset)
+        let fetchData = Action<Void, NovelListModel> { args in
+            extra.useCase.get()
         }
         
         Observable.merge (
@@ -64,7 +64,7 @@ extension NovelListViewModel {
             input.reachedBottom
         )
             .bind(onNext: {
-                fetchData.execute((limit: 20, offset: state.novels.value.count))
+                fetchData.execute()
             })
             .disposed(by: disposeBag)
         
