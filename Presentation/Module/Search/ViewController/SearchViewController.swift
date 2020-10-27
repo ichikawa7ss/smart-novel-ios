@@ -25,8 +25,6 @@ final class SearchViewController: UIViewController, ShowActionSheetView {
     @IBOutlet private weak var tableView: UITableView! {
         willSet {
             newValue.register(SortFilterCell.self)
-            newValue.register(SearchCandidateTagHeaderCell.self)
-            newValue.register(SearchCandidateTagCell.self)
             newValue.register(GenreGroupTableCell.self)
         }
     }
@@ -120,10 +118,6 @@ extension SearchViewController: UITableViewDataSource {
         return cell
     }
 
-    private func searchCandidateTagHeaderCell(_ cell: SearchCandidateTagHeaderCell) -> SearchCandidateTagHeaderCell {
-        return cell
-    }
-
     private func genreGroupCell(_ cell: GenreGroupTableCell, data: [NovelListModel.Novel.SearchableGenre]) -> GenreGroupTableCell {
         cell.setData(data)
         
@@ -132,19 +126,6 @@ extension SearchViewController: UITableViewDataSource {
             .disposed(by: cell.disposeBag)
         return cell
     }
-
-//    private func searchCandidateTagCell(_ cell: SearchCandidateTagCell, data: NovelListModel.Novel.Tag) -> SearchCandidateTagCell {
-//
-//        cell.setData(data)
-//
-//        cell.cellDidTapRelay
-//            .bind(onNext: { [weak self] tag in
-//                self?.viewModel.input.didTapCandidateTagCell(tag)
-//            })
-//            .disposed(by: cell.disposeBag)
-//
-//        return cell
-//    }
 }
 
 extension SearchViewController: SlideSearchHeaderViewDelegate {
