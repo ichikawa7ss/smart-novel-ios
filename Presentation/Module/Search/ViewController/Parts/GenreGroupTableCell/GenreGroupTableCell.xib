@@ -11,52 +11,52 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="PjM-KT-eol" customClass="GenreGroupTableCell" customModule="Presentation" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PjM-KT-eol" id="Q1g-NY-ylM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PjM-KT-eol" id="Q1g-NY-ylM">
                 <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ジャンルから探す" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z57-Pe-Jsb">
-                        <rect key="frame" x="16" y="8" width="127" height="0.5"/>
+                        <rect key="frame" x="16" y="8" width="127" height="16"/>
                         <fontDescription key="fontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="LgA-SK-FU3">
-                        <rect key="frame" x="0.0" y="16.5" width="414" height="133.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="LgA-SK-FU3">
+                        <rect key="frame" x="0.0" y="16.5" width="414" height="167"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8lx-cj-kOQ">
-                                <rect key="frame" x="0.0" y="0.0" width="207" height="133.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="8lx-cj-kOQ">
+                                <rect key="frame" x="0.0" y="0.0" width="207" height="167"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgW-14-xIK" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="44.5"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgW-14-xIK" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="53"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44.5" id="54v-vY-8Uk"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNb-ye-X6H" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="207" height="44.5"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TNb-ye-X6H" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="57" width="207" height="53"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIs-Lp-9iS" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="89" width="207" height="44.5"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yIs-Lp-9iS" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="114" width="207" height="53"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Jse-be-BT5">
-                                <rect key="frame" x="207" y="0.0" width="207" height="133.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Jse-be-BT5">
+                                <rect key="frame" x="207" y="0.0" width="207" height="167"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIR-o3-n1w" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="207" height="44.5"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LIR-o3-n1w" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="53"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mKn-uJ-Zf8" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="207" height="44.5"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mKn-uJ-Zf8" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="57" width="207" height="53"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fpJ-hX-Fl9" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="89" width="207" height="44.5"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fpJ-hX-Fl9" customClass="GenreItemView" customModule="Presentation" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="114" width="207" height="53"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
                                 </subviews>
@@ -69,7 +69,7 @@
                     <constraint firstItem="z57-Pe-Jsb" firstAttribute="leading" secondItem="Q1g-NY-ylM" secondAttribute="leading" constant="16" id="2oY-xy-ZZr"/>
                     <constraint firstAttribute="trailing" secondItem="LgA-SK-FU3" secondAttribute="trailing" id="4p5-x7-EtU"/>
                     <constraint firstAttribute="bottom" secondItem="LgA-SK-FU3" secondAttribute="bottom" id="dA6-ag-Xl8"/>
-                    <constraint firstItem="LgA-SK-FU3" firstAttribute="top" secondItem="z57-Pe-Jsb" secondAttribute="bottom" constant="8" id="iwJ-pE-Jo1"/>
+                    <constraint firstItem="LgA-SK-FU3" firstAttribute="top" secondItem="z57-Pe-Jsb" secondAttribute="bottom" constant="16" id="iwJ-pE-Jo1"/>
                     <constraint firstItem="LgA-SK-FU3" firstAttribute="leading" secondItem="Q1g-NY-ylM" secondAttribute="leading" id="xJc-In-9q2"/>
                 </constraints>
             </tableViewCellContentView>
