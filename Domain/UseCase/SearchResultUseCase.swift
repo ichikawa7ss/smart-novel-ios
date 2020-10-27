@@ -21,7 +21,7 @@ public enum SearchResultUseCaseProvider {
 
 public protocol SearchResultUseCase {
     func get(text: String, order: NovelListModel.Novel.SortField, limit: Int, offset: Int) -> Single<NovelListModel>
-    func get(genre: String, order: NovelListModel.Novel.SortField, limit: Int, offset: Int) -> Single<NovelListModel>
+    func get(genres: [String], order: NovelListModel.Novel.SortField, limit: Int, offset: Int) -> Single<NovelListModel>
     func getSortField() -> Observable<[NovelListModel.Novel.SortField]>
 }
 
@@ -40,8 +40,8 @@ private struct SearchResultUseCaseImpl: SearchResultUseCase {
         return self.novelListTranslator.convert(from: self.novelListRepository.get(text: text, order: order.rawValue, limit: limit, offset: offset))
     }
     
-    func get(genre: String, order: NovelListModel.Novel.SortField, limit: Int, offset: Int) -> Single<NovelListModel> {
-        return self.novelListTranslator.convert(from: self.novelListRepository.get(genre: genre, order: order.rawValue, limit: limit, offset: offset))
+    func get(genres: [String], order: NovelListModel.Novel.SortField, limit: Int, offset: Int) -> Single<NovelListModel> {
+        return self.novelListTranslator.convert(from: self.novelListRepository.get(genres: genres, order: order.rawValue, limit: limit, offset: offset))
     }
 
     func getSortField() -> Observable<[NovelListModel.Novel.SortField]> {

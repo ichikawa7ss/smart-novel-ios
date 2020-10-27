@@ -16,14 +16,14 @@ final class GenreItemView: BaseView {
     @IBOutlet private weak var icon: UIImageView!
     @IBOutlet private weak var itemButton: HoverView!
     
-    var itemButtonDidTapRelay = PublishRelay<NovelListModel.Novel.Tag>()
+    var itemButtonDidTapRelay = PublishRelay<NovelListModel.Novel.SearchableGenre>()
     
-    func setData(_ tag: NovelListModel.Novel.Tag) {
-        self.label.text = tag.name
+    func setData(_ genre: NovelListModel.Novel.SearchableGenre) {
+        self.label.text = genre.rawValue
         self.icon.image = UIImage(named: "robot")
         
         self.itemButton.didTouchUpInsideObservable
-            .map { tag }
+            .map { genre }
             .bind(to: self.itemButtonDidTapRelay)
             .disposed(by: self.disposeBag)
     }

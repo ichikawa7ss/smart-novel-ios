@@ -27,6 +27,7 @@ final class SearchViewController: UIViewController, ShowActionSheetView {
             newValue.register(SortFilterCell.self)
             newValue.register(SearchCandidateTagHeaderCell.self)
             newValue.register(SearchCandidateTagCell.self)
+            newValue.register(GenreGroupTableCell.self)
         }
     }
     
@@ -68,7 +69,7 @@ extension SearchViewController {
 
     private func bindOutput() {
 
-        self.viewModel.output.tags
+        self.viewModel.output.genres
             .bind { [weak self] _ in
                 self?.tableView.reloadData()
             }
@@ -89,7 +90,7 @@ extension SearchViewController {
 extension SearchViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.output.tags.value.count + 2 // ソートセルとヘッダーセルの分 +2する
+        return 2 // ソートセルとジャンルセル
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -100,15 +101,11 @@ extension SearchViewController: UITableViewDataSource {
         }
         
         if indexPath.row == 1 {
-            let cell = self.searchCandidateTagHeaderCell(tableView.dequeueReusableCell(for: indexPath))
+            let cell = self.genreGroupCell(tableView.dequeueReusableCell(for: indexPath), data: self.viewModel.output.genres.value)
             return cell
         }
         
-        guard let item = self.viewModel.output.tags.value[safe: indexPath.row - 2] else {
-                return UITableViewCell()
-        }
-        let cell = self.searchCandidateTagCell(tableView.dequeueReusableCell(for: indexPath), data: item)
-        return cell
+        return UITableViewCell() // ここまではこないはず
     }
 
     private func sortFilterCell(_ cell: SortFilterCell) -> SortFilterCell {
@@ -127,18 +124,27 @@ extension SearchViewController: UITableViewDataSource {
         return cell
     }
 
-    private func searchCandidateTagCell(_ cell: SearchCandidateTagCell, data: NovelListModel.Novel.Tag) -> SearchCandidateTagCell {
-
+    private func genreGroupCell(_ cell: GenreGroupTableCell, data: [NovelListModel.Novel.SearchableGenre]) -> GenreGroupTableCell {
         cell.setData(data)
         
-        cell.cellDidTapRelay
-            .bind(onNext: { [weak self] tag in
-                self?.viewModel.input.didTapCandidateTagCell(tag)
-            })
+        cell.genreViewDidTapRelay
+            .bind(to: self.viewModel.input.didTapSearchableGenreView)
             .disposed(by: cell.disposeBag)
-        
         return cell
     }
+
+//    private func searchCandidateTagCell(_ cell: SearchCandidateTagCell, data: NovelListModel.Novel.Tag) -> SearchCandidateTagCell {
+//
+//        cell.setData(data)
+//
+//        cell.cellDidTapRelay
+//            .bind(onNext: { [weak self] tag in
+//                self?.viewModel.input.didTapCandidateTagCell(tag)
+//            })
+//            .disposed(by: cell.disposeBag)
+//
+//        return cell
+//    }
 }
 
 extension SearchViewController: SlideSearchHeaderViewDelegate {

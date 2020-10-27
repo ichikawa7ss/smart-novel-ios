@@ -55,7 +55,6 @@ extension NovelListModel {
                 }
             }
         }
-
     }
 }
 
@@ -81,6 +80,32 @@ extension NovelListModel.Novel {
     public enum SortField: String, CaseIterable {
         case latest
         case score
+    }
+
+    public enum SearchableGenre: String, CaseIterable {
+        case fantasy = "ファンタジー"
+        case love = "恋愛"
+        case mystery = "ミステリー"
+        case drama = "ドラマ"
+        case essay = "エッセイ"
+        case sf = "SF"
+        
+        public var filters: [String] {
+            switch self {
+            case .fantasy:
+                return ["ファンタジー", "現代ファンタジー", "ハイファンタジー", "ローファンタジー", "異世界ファンタジー"]
+            case .love:
+                return ["恋愛", "ラブコメ", "BL"]
+            case .mystery:
+                return ["ミステリー"]
+            case .drama:
+                return ["現代ドラマ"]
+            case .essay:
+                return ["エッセイ・ノンフィクション", "ｴｯｾｲ・ﾉﾝﾌｨｸｼｮﾝ"]
+            case .sf:
+                return ["SF"]
+            }
+        }
     }
 }
 
