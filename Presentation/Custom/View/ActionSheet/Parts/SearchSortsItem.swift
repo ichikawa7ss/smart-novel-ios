@@ -15,7 +15,7 @@ extension NovelListModel.Novel.SortField: ActionSheetItem {
         case .latest:
             return "新着順"
         case .score:
-            return "関連順"
+            return "関連度順"
         }
     }
 }

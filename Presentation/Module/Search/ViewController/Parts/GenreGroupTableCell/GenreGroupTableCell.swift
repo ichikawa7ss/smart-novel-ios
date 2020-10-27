@@ -20,6 +20,11 @@ final class GenreGroupTableCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    override func prepareForReuse() {
+        self.prepareForReuse()
+        self.disposeBag = DisposeBag()
+    }
+    
     func setData(_ tags: [NovelListModel.Novel.SearchableGenre]) {
         self.genreItemViewCollection.enumerated().map {
             $0.element.setData(tags[$0.offset])
@@ -27,7 +32,7 @@ final class GenreGroupTableCell: UITableViewCell {
                 .bind (onNext:{ genre in
                     self.genreViewDidTapRelay.accept(genre)
                 })
-                .disposed(by: self.disposeBag)
+                .disposed(by: $0.element.disposeBag)
         }
     }
 }

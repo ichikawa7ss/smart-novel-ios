@@ -39,12 +39,13 @@ extension SearchViewModel {
     struct Output: OutputType {
         let genres: BehaviorRelay<[NovelListModel.Novel.SearchableGenre]>
         let tapSortsView: PublishRelay<[NovelListModel.Novel.SortField]>
+        let didSelectSorts: BehaviorRelay<NovelListModel.Novel.SortField>
     }
     
     struct State: StateType {
         let genres = BehaviorRelay<[NovelListModel.Novel.SearchableGenre]>(value: [])
         let tapSortsView = PublishRelay<[NovelListModel.Novel.SortField]>()
-        let selectSorts = PublishRelay<NovelListModel.Novel.SortField>()
+        let selectSorts = BehaviorRelay<NovelListModel.Novel.SortField>(value: .latest)
     }
 
     struct Extra: ExtraType {
@@ -88,7 +89,8 @@ extension SearchViewModel {
         
         return Output(
             genres: state.genres,
-            tapSortsView: state.tapSortsView
+            tapSortsView: state.tapSortsView,
+            didSelectSorts: state.selectSorts
         )
     }
 }

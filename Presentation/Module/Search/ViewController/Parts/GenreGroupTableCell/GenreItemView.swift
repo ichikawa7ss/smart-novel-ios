@@ -24,7 +24,9 @@ final class GenreItemView: BaseView {
         
         self.itemButton.didTouchUpInsideObservable
             .map { genre }
-            .bind(to: self.itemButtonDidTapRelay)
+            .bind(onNext: { genre in
+                self.itemButtonDidTapRelay.accept(genre)
+            })
             .disposed(by: self.disposeBag)
     }
 }

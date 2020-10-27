@@ -82,6 +82,13 @@ extension SearchViewController {
             })
             .disposed(by: self.disposeBag)
         
+        self.viewModel.output.didSelectSorts
+            .skip(1) // tableViewがないときにきてしまうのでskip(1)
+            .bind { [weak self] _ in
+                self?.tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .automatic)
+            }
+            .disposed(by: self.disposeBag)
+        
     }
 }
 
@@ -94,7 +101,7 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.row == 0 {
-            let cell = self.sortFilterCell(tableView.dequeueReusableCell(for: indexPath))
+            let cell = self.sortFilterCell(tableView.dequeueReusableCell(for: indexPath), sortField: self.viewModel.output.didSelectSorts.value)
             return cell
         }
         
@@ -106,8 +113,8 @@ extension SearchViewController: UITableViewDataSource {
         return UITableViewCell() // ここまではこないはず
     }
 
-    private func sortFilterCell(_ cell: SortFilterCell) -> SortFilterCell {
-        cell.setData(text: "新着順")
+    private func sortFilterCell(_ cell: SortFilterCell, sortField: NovelListModel.Novel.SortField) -> SortFilterCell {
+        cell.setData(text: sortField.text)
         
         cell.changeSortFiledDidTapRelay
             .bind(onNext: { [weak self] _ in
