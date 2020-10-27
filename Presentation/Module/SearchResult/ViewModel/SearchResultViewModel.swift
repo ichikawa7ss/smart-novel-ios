@@ -65,8 +65,8 @@ extension SearchResultViewModel {
             extra.useCase.get(text: args.text, order: args.order, limit: args.limit, offset: args.offset)
         }
         
-        let fetchSpecificGenre = Action<(genre: String, order: NovelListModel.Novel.SortField, limit: Int, offset: Int), NovelListModel> { args in
-            extra.useCase.get(genre: args.genre, order: args.order, limit: args.limit, offset: args.offset)
+        let fetchSpecificGenre = Action<(genres: [String], order: NovelListModel.Novel.SortField, limit: Int, offset: Int), NovelListModel> { args in
+            extra.useCase.get(genres: args.genres, order: args.order, limit: args.limit, offset: args.offset)
         }
         
         Observable.merge(
@@ -78,8 +78,8 @@ extension SearchResultViewModel {
                 switch extra.searchCondition {
                 case .text(let text):
                     fetchDataWithWord.execute((text: text, order: sortFiled, limit: 20, offset: state.novels.value.count))
-                case .genre(let genre):
-                    fetchSpecificGenre.execute((genre: genre, order: sortFiled, limit: 20, offset: state.novels.value.count))
+                case .genre(let genres):
+                    fetchSpecificGenre.execute((genres: genres, order: sortFiled, limit: 20, offset: state.novels.value.count))
                 }
             })
             .disposed(by: disposeBag)

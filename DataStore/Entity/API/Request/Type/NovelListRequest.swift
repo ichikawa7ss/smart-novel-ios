@@ -36,11 +36,11 @@ struct NovelListRequest: APIRequestable {
         self.order = order
     }
     
-    init(genre: String, order: String, limit: Int, offset: Int) {
+    init(genres: [String], order: String, limit: Int, offset: Int) {
         self.limit = limit
         self.offset = offset
         self.searchText = ""
-        self.filters = ["genre": genre]
+        self.filters = ["genre": genres]
         self.order = order
     }
     
@@ -50,7 +50,7 @@ struct NovelListRequest: APIRequestable {
     
     let searchText: String
     
-    let filters: [String: String]
+    let filters: [String: [String]]
     
     let order: String
 }

@@ -10,5 +10,5 @@ import Foundation
 enum SearchTransitType {
     
     case text(text: String)
-    case genre(genre: String)
+    case genre(genre: [String])
 }

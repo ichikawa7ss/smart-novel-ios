@@ -31,20 +31,21 @@ extension SearchViewModel {
     struct Input: InputType {
         let viewWillAppear = PublishRelay<Void>()
         let didTapSearchNovel = PublishRelay<String>()
-        let didTapCandidateTagCell = PublishRelay<NovelListModel.Novel.Tag>()
+        let didTapSearchableGenreView = PublishRelay<NovelListModel.Novel.SearchableGenre>()
         let didTapChangeSortFieldView  = PublishRelay<Void>()
         let didSelectSortsField = PublishRelay<NovelListModel.Novel.SortField>()
     }
 
     struct Output: OutputType {
-        let tags: BehaviorRelay<[NovelListModel.Novel.Tag]>
+        let genres: BehaviorRelay<[NovelListModel.Novel.SearchableGenre]>
         let tapSortsView: PublishRelay<[NovelListModel.Novel.SortField]>
+        let didSelectSorts: BehaviorRelay<NovelListModel.Novel.SortField>
     }
     
     struct State: StateType {
-        let tags = BehaviorRelay<[NovelListModel.Novel.Tag]>(value: [])
+        let genres = BehaviorRelay<[NovelListModel.Novel.SearchableGenre]>(value: [])
         let tapSortsView = PublishRelay<[NovelListModel.Novel.SortField]>()
-        let selectSorts = PublishRelay<NovelListModel.Novel.SortField>()
+        let selectSorts = BehaviorRelay<NovelListModel.Novel.SortField>(value: .latest)
     }
 
     struct Extra: ExtraType {
@@ -61,8 +62,8 @@ extension SearchViewModel {
         let extra = dependency.extra
         
         input.viewWillAppear
-            .flatMap { extra.useCase.getCandidateTags() }
-            .bind(to: state.tags)
+            .flatMap { extra.useCase.getCandidateGenres() }
+            .bind(to: state.genres)
             .disposed(by: disposeBag)
         
         input.didTapSearchNovel
@@ -71,9 +72,9 @@ extension SearchViewModel {
             })
             .disposed(by: disposeBag)
                 
-        input.didTapCandidateTagCell
-            .bind(onNext: { tag in
-                extra.wireframe.pushSearchResult(searchCondition: .genre(genre: tag.name))
+        input.didTapSearchableGenreView
+            .bind(onNext: { genre in
+                extra.wireframe.pushSearchResult(searchCondition: .genre(genre: genre.filters))
             })
             .disposed(by: disposeBag)
         
@@ -87,8 +88,9 @@ extension SearchViewModel {
             .disposed(by: disposeBag)
         
         return Output(
-            tags: state.tags,
-            tapSortsView: state.tapSortsView
+            genres: state.genres,
+            tapSortsView: state.tapSortsView,
+            didSelectSorts: state.selectSorts
         )
     }
 }

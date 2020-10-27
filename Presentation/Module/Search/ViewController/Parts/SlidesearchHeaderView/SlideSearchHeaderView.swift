@@ -33,11 +33,15 @@ class SlideSearchHeaderView: BaseView {
     @IBOutlet private weak var searchButtonTrailingConstraints: NSLayoutConstraint!
     @IBOutlet private weak var textFiledLeadingConstraints: NSLayoutConstraint!
     @IBOutlet private weak var textFiledTrailingConstraints: NSLayoutConstraint!
-    @IBOutlet private weak var headerTitleLabel: UILabel!
+    @IBOutlet private weak var headerTitleImageView: UIImageView!
     @IBOutlet private weak var cancelButton: UIButton!
     
     weak var delegate: SlideSearchHeaderViewDelegate?
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.headerTitleImageView.image = UIImage(named: "app_header")
+    }
 }
 
 // MARK: - Action
@@ -92,7 +96,7 @@ extension SlideSearchHeaderView {
         self.searchButtonTrailingConstraints.priority = willSearch ? UILayoutPriority(rawValue: 250) : UILayoutPriority(rawValue: 750)
 
         // 各パーツのUI設定
-        self.headerTitleLabel.isHidden = willSearch
+        self.headerTitleImageView.isHidden = willSearch
         self.cancelButton.isHidden = !willSearch
         
         // SearchButtonGestureRecognizer
