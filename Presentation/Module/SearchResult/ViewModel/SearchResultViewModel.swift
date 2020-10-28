@@ -80,12 +80,12 @@ extension SearchResultViewModel {
             .flatMap { state.selectSorts }
             .bind(onNext: { sortFiled in
                 switch extra.searchCondition {
-                case .text(let text):
-                    fetchDataWithWord.execute((text: text, order: sortFiled, limit: 20, offset: state.novels.value.count))
-                case .genre(let genres):
-                    fetchSpecificGenre.execute((genres: genres, order: sortFiled, limit: 20, offset: state.novels.value.count))
-                case .tag(let tags):
-                    fetchSpecificTag.execute((tags: tags, order: sortFiled, limit: 20, offset: state.novels.value.count))
+                case .text(text: let text, sortField: let sort):
+                    fetchDataWithWord.execute((text: text, order: sort, limit: 20, offset: state.novels.value.count))
+                case .genre(genre: let genres, sortField: let sort):
+                    fetchSpecificGenre.execute((genres: genres, order: sort, limit: 20, offset: state.novels.value.count))
+                case .tag(tag: let tags, sortField: let sort):
+                    fetchSpecificTag.execute((tags: tags, order: sort, limit: 20, offset: state.novels.value.count))
                 }
             })
             .disposed(by: disposeBag)

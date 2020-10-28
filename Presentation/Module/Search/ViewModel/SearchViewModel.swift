@@ -69,19 +69,19 @@ extension SearchViewModel {
         
         input.didTapSearchNovel
             .bind(onNext: { text in
-                extra.wireframe.pushSearchResult(searchCondition: .text(text: text))
+                extra.wireframe.pushSearchResult(searchCondition: .text(text: text, sortField: state.selectSorts.value))
             })
             .disposed(by: disposeBag)
                 
         input.didTapSearchableGenreView
             .bind(onNext: { genre in
-                extra.wireframe.pushSearchResult(searchCondition: .genre(genre: genre.filters))
+                extra.wireframe.pushSearchResult(searchCondition: .genre(genre: genre.filters, sortField: state.selectSorts.value))
             })
             .disposed(by: disposeBag)
         
         input.didTapTagListView
             .bind(onNext: { tag in
-                extra.wireframe.pushSearchResult(searchCondition: .tag(tag: [tag.name]))
+                extra.wireframe.pushSearchResult(searchCondition: .tag(tag: [tag.name], sortField: state.selectSorts.value))
             })
             .disposed(by: disposeBag)
         
