@@ -67,7 +67,7 @@ extension SearchViewController {
 
     private func bindOutput() {
 
-        self.viewModel.output.genres
+        self.viewModel.output.model
             .bind { [weak self] _ in
                 self?.tableView.reloadData()
             }
@@ -100,13 +100,17 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        guard let model = self.viewModel.output.model.value else {
+            return UITableViewCell()
+        }
+        
         if indexPath.row == 0 {
             let cell = self.sortFilterCell(tableView.dequeueReusableCell(for: indexPath), sortField: self.viewModel.output.didSelectSorts.value)
             return cell
         }
         
         if indexPath.row == 1 {
-            let cell = self.genreGroupCell(tableView.dequeueReusableCell(for: indexPath), data: self.viewModel.output.genres.value)
+            let cell = self.genreGroupCell(tableView.dequeueReusableCell(for: indexPath), data: model.genres)
             return cell
         }
         

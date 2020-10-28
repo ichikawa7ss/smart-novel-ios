@@ -37,13 +37,13 @@ extension SearchViewModel {
     }
 
     struct Output: OutputType {
-        let genres: BehaviorRelay<[NovelListModel.Novel.SearchableGenre]>
+        let model: BehaviorRelay<SearchModel?>
         let tapSortsView: PublishRelay<[NovelListModel.Novel.SortField]>
         let didSelectSorts: BehaviorRelay<NovelListModel.Novel.SortField>
     }
     
     struct State: StateType {
-        let genres = BehaviorRelay<[NovelListModel.Novel.SearchableGenre]>(value: [])
+        let model = BehaviorRelay<SearchModel?>(value: nil)
         let tapSortsView = PublishRelay<[NovelListModel.Novel.SortField]>()
         let selectSorts = BehaviorRelay<NovelListModel.Novel.SortField>(value: .latest)
     }
@@ -62,8 +62,8 @@ extension SearchViewModel {
         let extra = dependency.extra
         
         input.viewWillAppear
-            .flatMap { extra.useCase.getCandidateGenres() }
-            .bind(to: state.genres)
+            .flatMap { extra.useCase.get() }
+            .bind(to: state.model)
             .disposed(by: disposeBag)
         
         input.didTapSearchNovel
@@ -79,7 +79,7 @@ extension SearchViewModel {
             .disposed(by: disposeBag)
         
         input.didTapChangeSortFieldView
-            .flatMap { extra.useCase.getSortField() }
+            .map { state.model.value?.sortField ?? [] }
             .bind(to: state.tapSortsView)
             .disposed(by: disposeBag)
         
@@ -88,7 +88,7 @@ extension SearchViewModel {
             .disposed(by: disposeBag)
         
         return Output(
-            genres: state.genres,
+            model: state.model,
             tapSortsView: state.tapSortsView,
             didSelectSorts: state.selectSorts
         )
