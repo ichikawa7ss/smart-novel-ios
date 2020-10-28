@@ -12,21 +12,25 @@ protocol TransitToRootWireframe: AnyObject {
 
     var viewController: UIViewController? { get }
 
-    // func pushRoot()
-    // func presentRoot()
+     func showRoot()
 }
 
 extension TransitToRootWireframe {
 
-    //func pushRoot() {
-    //    let vc = RootBuilder.build()
-    //    self.viewController?.navigationController?.pushViewController(vc, animated: true)
-    //}
-
-    //func presentRoot() {
-    //    let vc = RootBuilder.build()
-    //    self.viewController?.present(vc, animated: true, completion: nil)
-    //}
+    func showRoot() {
+        let rootViewController = RootBuilder.build()
+        if let window = SmartNovelPresentation.shared.applicationWindow {
+            UIView.transition(
+                with: window,
+                duration: 0.5,
+                options: .transitionCrossDissolve,
+                animations: {
+                    let prevState = UIView.areAnimationsEnabled
+                    UIView.setAnimationsEnabled(false)
+                    window.rootViewController = rootViewController
+                    UIView.setAnimationsEnabled(prevState)
+                }
+            )
+        }
+    }
 }
-
-//protocol RootWireframeDelegate: AnyObject {}
