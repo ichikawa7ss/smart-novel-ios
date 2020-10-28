@@ -11,4 +11,5 @@ enum SearchTransitType {
     
     case text(text: String)
     case genre(genre: [String])
+    case tag(tag: [String])
 }

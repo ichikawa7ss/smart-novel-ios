@@ -81,7 +81,7 @@ extension SearchViewModel {
         
         input.didTapTagListView
             .bind(onNext: { tag in
-                print("Tapped Tag")
+                extra.wireframe.pushSearchResult(searchCondition: .tag(tag: [tag.name]))
             })
             .disposed(by: disposeBag)
         
