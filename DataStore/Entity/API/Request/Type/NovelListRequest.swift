@@ -43,6 +43,15 @@ struct NovelListRequest: APIRequestable {
         self.filters = ["genre": genres]
         self.order = order
     }
+
+    init(tags: [String], order: String, limit: Int, offset: Int) {
+        self.limit = limit
+        self.offset = offset
+        self.searchText = ""
+        self.filters = ["tag": tags]
+        self.order = order
+    }
+
     
     let limit: Int
     

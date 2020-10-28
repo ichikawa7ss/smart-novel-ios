@@ -26,6 +26,7 @@ final class SearchViewController: UIViewController, ShowActionSheetView {
         willSet {
             newValue.register(SortFilterCell.self)
             newValue.register(GenreGroupTableCell.self)
+            newValue.register(TagGroupTableCell.self)
         }
     }
     
@@ -67,7 +68,7 @@ extension SearchViewController {
 
     private func bindOutput() {
 
-        self.viewModel.output.genres
+        self.viewModel.output.model
             .bind { [weak self] _ in
                 self?.tableView.reloadData()
             }
@@ -95,21 +96,29 @@ extension SearchViewController {
 extension SearchViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2 // ソートセルとジャンルセル
+        return 3 // ソートセルとジャンルセルとタグセル
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        guard let model = self.viewModel.output.model.value else {
+            return UITableViewCell()
+        }
+        
         if indexPath.row == 0 {
             let cell = self.sortFilterCell(tableView.dequeueReusableCell(for: indexPath), sortField: self.viewModel.output.didSelectSorts.value)
             return cell
         }
         
         if indexPath.row == 1 {
-            let cell = self.genreGroupCell(tableView.dequeueReusableCell(for: indexPath), data: self.viewModel.output.genres.value)
+            let cell = self.genreGroupCell(tableView.dequeueReusableCell(for: indexPath), data: model.genres)
             return cell
         }
         
+        if indexPath.row == 2 {
+            let cell = self.tagGroupCell(tableView.dequeueReusableCell(for: indexPath), data: model.popularTags)
+            return cell
+        }
         return UITableViewCell() // ここまではこないはず
     }
 
@@ -131,8 +140,20 @@ extension SearchViewController: UITableViewDataSource {
         cell.genreViewDidTapRelay
             .bind(to: self.viewModel.input.didTapSearchableGenreView)
             .disposed(by: cell.disposeBag)
+        
         return cell
     }
+
+    private func tagGroupCell(_ cell: TagGroupTableCell, data: [NovelListModel.Novel.Tag]) -> TagGroupTableCell {
+        cell.setData(data)
+        
+        cell.tagDidTapRelay
+            .bind(to: self.viewModel.input.didTapTagListView)
+            .disposed(by: cell.disposeBag)
+        
+        return cell
+    }
+
 }
 
 extension SearchViewController: SlideSearchHeaderViewDelegate {

@@ -16,8 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = RootBuilder.build()
+        self.window?.rootViewController = SplashBuilder.build()
         self.window?.makeKeyAndVisible()
+        SmartNovelPresentation.shared.setWindow(window)
 
         return true
     }

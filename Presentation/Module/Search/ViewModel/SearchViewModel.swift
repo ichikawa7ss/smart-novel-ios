@@ -32,18 +32,19 @@ extension SearchViewModel {
         let viewWillAppear = PublishRelay<Void>()
         let didTapSearchNovel = PublishRelay<String>()
         let didTapSearchableGenreView = PublishRelay<NovelListModel.Novel.SearchableGenre>()
+        let didTapTagListView = PublishRelay<NovelListModel.Novel.Tag>()
         let didTapChangeSortFieldView  = PublishRelay<Void>()
         let didSelectSortsField = PublishRelay<NovelListModel.Novel.SortField>()
     }
 
     struct Output: OutputType {
-        let genres: BehaviorRelay<[NovelListModel.Novel.SearchableGenre]>
+        let model: BehaviorRelay<SearchModel?>
         let tapSortsView: PublishRelay<[NovelListModel.Novel.SortField]>
         let didSelectSorts: BehaviorRelay<NovelListModel.Novel.SortField>
     }
     
     struct State: StateType {
-        let genres = BehaviorRelay<[NovelListModel.Novel.SearchableGenre]>(value: [])
+        let model = BehaviorRelay<SearchModel?>(value: nil)
         let tapSortsView = PublishRelay<[NovelListModel.Novel.SortField]>()
         let selectSorts = BehaviorRelay<NovelListModel.Novel.SortField>(value: .latest)
     }
@@ -62,24 +63,30 @@ extension SearchViewModel {
         let extra = dependency.extra
         
         input.viewWillAppear
-            .flatMap { extra.useCase.getCandidateGenres() }
-            .bind(to: state.genres)
+            .flatMap { extra.useCase.get() }
+            .bind(to: state.model)
             .disposed(by: disposeBag)
         
         input.didTapSearchNovel
             .bind(onNext: { text in
-                extra.wireframe.pushSearchResult(searchCondition: .text(text: text))
+                extra.wireframe.pushSearchResult(searchCondition: .text(text: text, sortField: state.selectSorts.value))
             })
             .disposed(by: disposeBag)
                 
         input.didTapSearchableGenreView
             .bind(onNext: { genre in
-                extra.wireframe.pushSearchResult(searchCondition: .genre(genre: genre.filters))
+                extra.wireframe.pushSearchResult(searchCondition: .genre(genre: genre.filters, sortField: state.selectSorts.value))
+            })
+            .disposed(by: disposeBag)
+        
+        input.didTapTagListView
+            .bind(onNext: { tag in
+                extra.wireframe.pushSearchResult(searchCondition: .tag(tag: [tag.name], sortField: state.selectSorts.value))
             })
             .disposed(by: disposeBag)
         
         input.didTapChangeSortFieldView
-            .flatMap { extra.useCase.getSortField() }
+            .map { state.model.value?.sortField ?? [] }
             .bind(to: state.tapSortsView)
             .disposed(by: disposeBag)
         
@@ -88,7 +95,7 @@ extension SearchViewModel {
             .disposed(by: disposeBag)
         
         return Output(
-            genres: state.genres,
+            model: state.model,
             tapSortsView: state.tapSortsView,
             didSelectSorts: state.selectSorts
         )

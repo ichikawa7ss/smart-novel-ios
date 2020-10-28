@@ -66,6 +66,7 @@ targets:
       - carthage: Action
       - carthage: Unio
       - carthage: Reusable
+      - carthage: TagListView
   Domain:
     type: framework
     platform: iOS

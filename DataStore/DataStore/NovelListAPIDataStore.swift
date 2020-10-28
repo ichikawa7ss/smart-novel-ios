@@ -19,6 +19,7 @@ protocol NovelListAPIDataStore {
     func get(limit: Int, offset: Int) -> Single<NovelListResponse>
     func get(text: String, order: String, limit: Int, offset: Int) -> Single<NovelListResponse>
     func get(genres: [String], order: String, limit: Int, offset: Int) -> Single<NovelListResponse>
+    func get(tags: [String], order: String, limit: Int, offset: Int) -> Single<NovelListResponse>
 }
 
 private struct NovelListAPIDataStoreImpl: NovelListAPIDataStore {
@@ -39,5 +40,9 @@ private struct NovelListAPIDataStoreImpl: NovelListAPIDataStore {
     
     func get(genres: [String], order: String, limit: Int, offset: Int) -> Single<NovelListResponse> {
         return self.session.rx.response(for: NovelListRequest(genres: genres, order: order, limit: limit, offset: offset))
+    }
+    
+    func get(tags: [String], order: String, limit: Int, offset: Int) -> Single<NovelListResponse> {
+        return self.session.rx.response(for: NovelListRequest(tags: tags, order: order, limit: limit, offset: offset))
     }
 }

@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import Domain
 
 enum SearchTransitType {
     
-    case text(text: String)
-    case genre(genre: [String])
+    case text(text: String, sortField: NovelListModel.Novel.SortField)
+    case genre(genre: [String], sortField: NovelListModel.Novel.SortField)
+    case tag(tag: [String], sortField: NovelListModel.Novel.SortField)
 }

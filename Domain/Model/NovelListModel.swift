@@ -8,7 +8,7 @@
 import DataStore
 import Foundation
 
-// MARK: - PokemonListModel
+// MARK: - NovelListModel
 public struct NovelListModel {
 
     public let count: Int
