@@ -26,6 +26,7 @@ final class SearchViewController: UIViewController, ShowActionSheetView {
         willSet {
             newValue.register(SortFilterCell.self)
             newValue.register(GenreGroupTableCell.self)
+            newValue.register(TagGroupTableCell.self)
         }
     }
     
@@ -95,7 +96,7 @@ extension SearchViewController {
 extension SearchViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2 // ソートセルとジャンルセル
+        return 3 // ソートセルとジャンルセルとタグセル
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,6 +115,10 @@ extension SearchViewController: UITableViewDataSource {
             return cell
         }
         
+        if indexPath.row == 2 {
+            let cell = self.tagGroupCell(tableView.dequeueReusableCell(for: indexPath), data: model.popularTags)
+            return cell
+        }
         return UITableViewCell() // ここまではこないはず
     }
 
@@ -135,8 +140,20 @@ extension SearchViewController: UITableViewDataSource {
         cell.genreViewDidTapRelay
             .bind(to: self.viewModel.input.didTapSearchableGenreView)
             .disposed(by: cell.disposeBag)
+        
         return cell
     }
+
+    private func tagGroupCell(_ cell: TagGroupTableCell, data: [NovelListModel.Novel.Tag]) -> TagGroupTableCell {
+        cell.setData(data)
+        
+        cell.tagDidTapRelay
+            .bind(to: self.viewModel.input.didTapTagListView)
+            .disposed(by: cell.disposeBag)
+        
+        return cell
+    }
+
 }
 
 extension SearchViewController: SlideSearchHeaderViewDelegate {

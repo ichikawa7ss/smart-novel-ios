@@ -41,7 +41,6 @@ private struct SplashUseCaseImpl: SplashUseCase {
     
     func setSearchableTags(_ facets: FacetsModel) {
         SmartNovelDomain.shared.setSearchableTags(facets.tags)
-        print(SmartNovelDomain.shared.popularTags)
     }
 }
 

@@ -10,3 +10,4 @@ github "ishkawa/APIKit" ~> 5.1
 
 ## UI
 github "AliSoftware/Reusable" ~> 4.1
+github "ElaWorkshop/TagListView" ~> 1.0

@@ -32,6 +32,7 @@ extension SearchViewModel {
         let viewWillAppear = PublishRelay<Void>()
         let didTapSearchNovel = PublishRelay<String>()
         let didTapSearchableGenreView = PublishRelay<NovelListModel.Novel.SearchableGenre>()
+        let didTapTagListView = PublishRelay<NovelListModel.Novel.Tag>()
         let didTapChangeSortFieldView  = PublishRelay<Void>()
         let didSelectSortsField = PublishRelay<NovelListModel.Novel.SortField>()
     }
@@ -75,6 +76,12 @@ extension SearchViewModel {
         input.didTapSearchableGenreView
             .bind(onNext: { genre in
                 extra.wireframe.pushSearchResult(searchCondition: .genre(genre: genre.filters))
+            })
+            .disposed(by: disposeBag)
+        
+        input.didTapTagListView
+            .bind(onNext: { tag in
+                print("Tapped Tag")
             })
             .disposed(by: disposeBag)
         
