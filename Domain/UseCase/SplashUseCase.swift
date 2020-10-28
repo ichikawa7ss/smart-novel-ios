@@ -21,6 +21,7 @@ public enum SplashUseCaseProvider {
 
 public protocol SplashUseCase {
     func get() -> Single<FacetsModel>
+    func setSearchableTags(_ facets: FacetsModel)
 }
 
 private struct SplashUseCaseImpl: SplashUseCase {
@@ -36,6 +37,11 @@ private struct SplashUseCaseImpl: SplashUseCase {
     
     func get() -> Single<FacetsModel> {
         return self.facetsTranslator.convert(from: self.facetsRepository.get())
+    }
+    
+    func setSearchableTags(_ facets: FacetsModel) {
+        SmartNovelDomain.shared.setSearchableTags(facets.tags)
+        print(SmartNovelDomain.shared.popularTags)
     }
 }
 

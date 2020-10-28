@@ -33,14 +33,9 @@ extension SplashViewModel {
     }
 
     struct Output: OutputType {
-        // e.g.
-        // let reloadAll: Observable<Void>
-        // let sections: BehaviorRelay<[SplashViewController.Section]>
     }
     
     struct State: StateType {
-        // e.g.
-        // let networkState = PublishRelay<NetworkState>()
     }
 
     struct Extra: ExtraType {
@@ -53,7 +48,6 @@ extension SplashViewModel {
 
     static func bind(from dependency: Dependency<Input, State, Extra>, disposeBag: DisposeBag) -> Output {
         let input = dependency.inputObservables
-        let state = dependency.state
         let extra = dependency.extra
         
         let fetchFacetsAction = Action<Void, FacetsModel> { _ in
@@ -69,6 +63,7 @@ extension SplashViewModel {
         
         fetchFacetsAction.elements
             .bind(onNext: { model in
+                extra.useCase.setSearchableTags(model)
                 extra.wireframe.showRoot()
             })
             .disposed(by: disposeBag)

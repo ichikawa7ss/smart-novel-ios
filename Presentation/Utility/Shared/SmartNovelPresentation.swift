@@ -7,7 +7,7 @@
 
 import UIKit
 
-// めちゃコミ固有のシングルトンで保持しておきたい環境周りの定義
+/// シングルトンで保持しておきたい定義のうちPresentation層で扱うべきもの
 public class SmartNovelPresentation {
 
     public static let shared = SmartNovelPresentation()
