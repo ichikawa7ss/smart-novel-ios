@@ -92,7 +92,8 @@ extension SearchResultViewModel {
         
         Observable.merge(
             fetchDataWithWord.elements,
-            fetchSpecificGenre.elements
+            fetchSpecificGenre.elements,
+            fetchSpecificTag.elements
         )
             .flatMap { model -> BehaviorRelay<[NovelListModel.Novel]> in
                 var retNovels = state.novels.value
