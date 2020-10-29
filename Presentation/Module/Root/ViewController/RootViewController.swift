@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class RootViewController: UIViewController {
 
@@ -79,5 +80,9 @@ extension RootViewController {
 extension RootViewController {
 
     private func bindOutput() {
+
+        self.viewModel.output.needsShowSwitchButton
+            .bind(to: self.switchButtonView.rx.show)
+            .disposed(by: self.disposeBag)
     }
 }

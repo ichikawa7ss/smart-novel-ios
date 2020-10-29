@@ -9,6 +9,7 @@
 import UIKit
 import RxWebKit
 import WebKit
+import Domain
 
 final class NovelDetailWebViewController: UIViewController {
 
@@ -55,6 +56,13 @@ extension NovelDetailWebViewController {
         self.safariButton.rx.tap
             .map { self.requestURL }
             .bind(to: self.viewModel.input.tapSafariButton)
+            .disposed(by: self.disposeBag)
+        
+        self.rx.viewWillAppear
+            .bind(onNext: { _ in
+                let notification = NotificationTypes.SwitchButton.Display.hide
+                NotificationCenter.default.post(name: notification.name, object: notification.object)
+            })
             .disposed(by: self.disposeBag)
     }
 }

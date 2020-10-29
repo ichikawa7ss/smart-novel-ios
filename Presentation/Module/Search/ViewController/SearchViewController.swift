@@ -60,6 +60,14 @@ extension SearchViewController {
             .map { _ in }
             .bind(to: self.viewModel.input.viewWillAppear)
             .disposed(by: self.disposeBag)
+        
+        self.rx.viewDidAppear
+            .bind(onNext: { _ in
+                let notification = NotificationTypes.SwitchButton.Display.show
+                NotificationCenter.default.post(name: notification.name, object: notification.object)
+            })
+            .disposed(by: self.disposeBag)
+
     }
 }
 

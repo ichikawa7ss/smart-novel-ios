@@ -10,6 +10,7 @@ import Action
 import RxCocoa
 import RxSwift
 import Unio
+import Domain
 
 protocol RootViewModelType: AnyObject {
     var input: InputWrapper<RootViewModel.Input> { get }
@@ -33,14 +34,11 @@ extension RootViewModel {
     }
 
     struct Output: OutputType {
-        // e.g.
-        // let reloadAll: Observable<Void>
-        // let sections: BehaviorRelay<[RootViewController.Section]>
+         let needsShowSwitchButton: BehaviorRelay<Bool>
     }
     
     struct State: StateType {
-        // e.g.
-        // let networkState = PublishRelay<NetworkState>()
+         let needsShowSwitchButton = BehaviorRelay<Bool>(value: true)
     }
 
     struct Extra: ExtraType {
@@ -54,8 +52,16 @@ extension RootViewModel {
         let input = dependency.inputObservables
         let state = dependency.state
         var extra = dependency.extra
+
+        NotificationTypes.SwitchButton.Display.allCases.forEach {
+            NotificationCenter.default.rx.notification($0.name, object: $0.object)
+                .map { ($0.object as? Bool ?? true) }
+                .bind(to: state.needsShowSwitchButton)
+                .disposed(by: disposeBag)
+        }
         
         return Output(
+            needsShowSwitchButton: state.needsShowSwitchButton
         )
     }
 }

@@ -61,4 +61,18 @@ extension Reactive where Base: SwitchButtonView {
             }
         }
     }
+    
+    var show: Binder<Bool> {
+        return Binder(base) { view, show in
+            let alpha: CGFloat = show ? 1.0 : 0.0
+            if view.isHidden { view.isHidden = false }
+            UIView.animate(withDuration: 0.1,
+                           animations: {
+                            view.alpha = alpha
+            },
+                           completion: { _ in
+                            view.isHidden = !show
+            })
+        }
+    }
 }

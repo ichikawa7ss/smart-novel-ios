@@ -54,6 +54,13 @@ extension HomeViewController {
             .skip(1) // 画面遷移直後、要素が無い状態の時にreachedBottomが来ちゃうので初回は無視する
             .bind(to: self.viewModel.input.reachedBottom)
             .disposed(by: self.disposeBag)
+        
+        self.rx.viewDidAppear
+            .bind(onNext: { _ in
+                let notification = NotificationTypes.SwitchButton.Display.show
+                NotificationCenter.default.post(name: notification.name, object: notification.object)
+            })
+            .disposed(by: self.disposeBag)
     }
 }
     
