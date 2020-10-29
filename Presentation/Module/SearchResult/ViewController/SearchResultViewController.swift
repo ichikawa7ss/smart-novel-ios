@@ -26,6 +26,11 @@ final class SearchResultViewController: UIViewController {
         super.viewDidLoad()
         self.bindInput()
         self.bindOutput()
+        self.setup()
+    }
+    
+    private func setup() {
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "アプリに戻る", style: .plain, target: nil, action: nil)
     }
 }
 
