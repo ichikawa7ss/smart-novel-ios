@@ -51,7 +51,7 @@ extension NovelListModel {
                 case .novelba:
                     return "#2CC199"
                 case .syosetukaninarou:
-                    return "#16B6CD"
+                    return "#74341c"
                 }
             }
         }

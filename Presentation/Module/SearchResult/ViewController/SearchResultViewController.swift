@@ -26,6 +26,11 @@ final class SearchResultViewController: UIViewController {
         super.viewDidLoad()
         self.bindInput()
         self.bindOutput()
+        self.setup()
+    }
+    
+    private func setup() {
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "アプリに戻る", style: .plain, target: nil, action: nil)
     }
 }
 
@@ -43,6 +48,13 @@ extension SearchResultViewController {
         self.tableView.rx.reachedBottom()
             .skip(1) // 画面遷移直後、要素が無い状態の時にreachedBottomが来ちゃうので初回は無視する
             .bind(to: self.viewModel.input.reachedBottom)
+            .disposed(by: self.disposeBag)
+        
+        self.rx.viewWillAppear
+            .bind(onNext: { _ in
+                let notification = NotificationTypes.SwitchButton.Display.hide
+                NotificationCenter.default.post(name: notification.name, object: notification.object)
+            })
             .disposed(by: self.disposeBag)
 
     }

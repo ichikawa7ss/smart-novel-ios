@@ -40,7 +40,7 @@ extension SmartNovelNavigationController {
 
     private func setupAppearance() {
         // バーの背景色
-        self.navigationBar.barTintColor = UIColor(hex: "fcd424")
+        self.navigationBar.barTintColor = UIColor(hex: "FFD728")
         self.navigationBar.isTranslucent = false
         
         // バーアイテムのカラー
