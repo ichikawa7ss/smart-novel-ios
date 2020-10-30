@@ -26,7 +26,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.bindInput()
         self.bindOutput()
-        self.setNavigationTitleView(UIImage(named: "app_header")!)
+        self.setNavigationTitleView(UIImage(named: "app_home_header")!)
     }
     
     /// Naviagationのタイトルを画像でSETする
