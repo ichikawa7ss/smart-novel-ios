@@ -36,10 +36,12 @@ extension HomeViewModel {
     
     struct Output: OutputType {
         let novels: BehaviorRelay<[NovelListModel.Novel]>
+        let networkState: PublishRelay<NetworkState>
     }
     
     struct State: StateType {
         let novels = BehaviorRelay<[NovelListModel.Novel]>(value: [])
+        let networkState = PublishRelay<NetworkState>()
     }
     
     struct Extra: ExtraType {
@@ -85,8 +87,14 @@ extension HomeViewModel {
             })
             .disposed(by: disposeBag)
         
+        fetchData.state
+            .bind(to: state.networkState)
+            .disposed(by: disposeBag)
+
+        
         return Output(
-            novels: state.novels
+            novels: state.novels,
+            networkState: state.networkState
         )
     }
 }

@@ -11,7 +11,9 @@ import Domain
 import RxCocoa
 import RxSwift
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController, ShowLoadingView {
+
+    var loadingViewManager = LoadingViewManager()
 
     var viewModel: HomeViewModelType!
     
@@ -75,6 +77,10 @@ extension HomeViewController {
             }
             .disposed(by: disposeBag)
         
+        self.viewModel.output.networkState
+            .bind(to: self.rx.networkState)
+            .disposed(by: self.disposeBag)
+
     }
 }
 
