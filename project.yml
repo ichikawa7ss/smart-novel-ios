@@ -38,6 +38,7 @@ targets:
             UILaunchStoryboardName: LaunchScreen
             UIRequiredDeviceCapabilities: [armv7]
             LSApplicationQueriesSchemes: ["https", "http"]
+            UIRequiresFullScreen: YES
   DataStore:
     type: framework
     platform: iOS
