@@ -39,12 +39,14 @@ extension SearchResultViewModel {
     struct Output: OutputType {
         let novels: BehaviorRelay<[NovelListModel.Novel]>
         let tapSortsView: PublishRelay<[NovelListModel.Novel.SortField]>
+        let networkState: PublishRelay<NetworkState>
     }
     
     struct State: StateType {
         let novels = BehaviorRelay<[NovelListModel.Novel]>(value: [])
         let tapSortsView = PublishRelay<[NovelListModel.Novel.SortField]>()
         let selectSorts = BehaviorRelay<NovelListModel.Novel.SortField>(value: .latest)
+        let networkState = PublishRelay<NetworkState>()
     }
 
     struct Extra: ExtraType {
@@ -103,6 +105,15 @@ extension SearchResultViewModel {
             .bind(to: state.novels)
             .disposed(by: disposeBag)
         
+        Observable.merge(
+            fetchDataWithWord.state,
+            fetchSpecificGenre.state,
+            fetchSpecificTag.state
+        )
+            .bind(to: state.networkState)
+            .disposed(by: disposeBag)
+
+        
         input.tapNovelListCell
             .map { $0.novelDetailUrl } // FIXME: できればURLのチェック機構を入れたい
             .filterNil()
@@ -124,7 +135,8 @@ extension SearchResultViewModel {
         
         return Output(
             novels: state.novels,
-            tapSortsView: state.tapSortsView
+            tapSortsView: state.tapSortsView,
+            networkState: state.networkState
         )
     }
 }

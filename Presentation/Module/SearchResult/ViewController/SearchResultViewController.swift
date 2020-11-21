@@ -11,7 +11,9 @@ import Domain
 import RxCocoa
 import RxSwift
 
-final class SearchResultViewController: UIViewController {
+final class SearchResultViewController: UIViewController, ShowLoadingView {
+
+    var loadingViewManager = LoadingViewManager()
 
     var viewModel: SearchResultViewModelType!
 
@@ -70,6 +72,11 @@ extension SearchResultViewController {
                 self?.tableView.reloadData()
             }
             .disposed(by: disposeBag)
+        
+        self.viewModel.output.networkState
+            .bind(to: self.rx.networkState)
+            .disposed(by: self.disposeBag)
+
     }
 }
 
