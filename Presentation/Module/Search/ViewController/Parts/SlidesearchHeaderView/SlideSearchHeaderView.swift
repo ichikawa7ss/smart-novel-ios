@@ -40,7 +40,7 @@ class SlideSearchHeaderView: BaseView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.headerTitleImageView.image = UIImage(named: "app_header")
+        self.headerTitleImageView.image = UIImage(named: "app_search_header")
     }
 }
 

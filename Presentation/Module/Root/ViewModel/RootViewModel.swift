@@ -18,7 +18,7 @@ protocol RootViewModelType: AnyObject {
 }
 
 final class RootViewModel: UnioStream<RootViewModel>, RootViewModelType  {
-
+    
     init(extra: Extra) {
         super.init(input: Input(),
                    state: State(),
@@ -27,27 +27,27 @@ final class RootViewModel: UnioStream<RootViewModel>, RootViewModelType  {
 }
 
 extension RootViewModel {
-
+    
     struct Input: InputType {
         // e.g.
         // let viewWillAppear = PublishRelay<Void>()
     }
-
+    
     struct Output: OutputType {
-         let needsShowSwitchButton: BehaviorRelay<Bool>
+        let needsShowSwitchButton: BehaviorRelay<Bool>
     }
     
     struct State: StateType {
-         let needsShowSwitchButton = BehaviorRelay<Bool>(value: true)
+        let needsShowSwitchButton = BehaviorRelay<Bool>(value: true)
     }
-
+    
     struct Extra: ExtraType {
         let wireframe: RootWireframe
     }
 }
 
 extension RootViewModel {
-
+    
     static func bind(from dependency: Dependency<Input, State, Extra>, disposeBag: DisposeBag) -> Output {
         let input = dependency.inputObservables
         let state = dependency.state

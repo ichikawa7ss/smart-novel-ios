@@ -10,8 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class SplashViewController: UIViewController {
-
+final class SplashViewController: UIViewController, ShowErrorAlertView {
+    
     var viewModel: SplashViewModelType!
 
     // MARK: Life cycle
@@ -42,5 +42,10 @@ extension SplashViewController {
 extension SplashViewController {
 
     private func bindOutput() {
+        
+        self.viewModel.output.error
+            .bind(onNext: { error in
+                self.showErrorAlert(error, closeHandler: {})
+            }).disposed(by: self.disposeBag)
     }
 }

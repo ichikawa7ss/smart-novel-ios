@@ -11,7 +11,9 @@ import RxWebKit
 import WebKit
 import Domain
 
-final class NovelDetailWebViewController: UIViewController {
+final class NovelDetailWebViewController: UIViewController, ShowLoadingView, ShowErrorAlertView {
+
+    var loadingViewManager = LoadingViewManager()
 
     var viewModel: NovelDetailWebViewModelType!
     
@@ -32,6 +34,7 @@ final class NovelDetailWebViewController: UIViewController {
         super.viewDidLoad()
         self.bindInput()
         self.bindOutput()
+        self.bindReload()
         self.setupNavigationBar()
         self.loadWebContent()
     }
@@ -71,5 +74,66 @@ extension NovelDetailWebViewController {
 extension NovelDetailWebViewController {
 
     private func bindOutput() {
+        
+        // 遷移時にエラーが発生した時
+        self.webView.rx.didFailNavigation
+            .filter { !$2.urlLoadCancelled() }
+            .bind(onNext: { [weak self] args in
+                self?.showErrorAlert(
+                    args.error,
+                    retryHandler: {
+                        args.webView.reload()
+                    },
+                    closeHandler: {}
+                )
+            })
+            .disposed(by: self.disposeBag)
+
+        // ページ読み込み時にエラーが発生した時
+        self.webView.rx.didFailProvisionalNavigation
+            .filter {
+                // webViewではreloadを何度もかけるとリクエストをキャンセルするエラーを発行することがある
+                // このエラーはアラートを出さずに握り潰す
+                !$0.error.urlLoadCancelled()
+            }
+            .bind(onNext: { [weak self] args in
+                self?.showErrorAlert(
+                    args.error,
+                    retryHandler: {
+                        args.webView.reload()
+                    },
+                    closeHandler: {})
+            })
+            .disposed(by: self.disposeBag)
+
+    }
+}
+
+// MARK: - bind reload
+extension NovelDetailWebViewController {
+
+    private func bindReload() {
+        
+        // 画面表示時にローディングを表示
+        self.rx.viewDidAppear
+            .take(1)
+            .map { _ in self.webView.isLoading }
+            .bind(to: self.rx.loading)
+            .disposed(by: self.disposeBag)
+
+        // webView内でのローディングの状態を見て表示を切り替え
+        self.webView.rx.loading
+            .bind(onNext: { isLoading in
+                self.rx.loading.onNext(isLoading)
+            })
+            .disposed(by: self.disposeBag)
+    }
+}
+
+extension Error {
+
+    func urlLoadCancelled() -> Bool {
+        guard let urlError = self as? URLError else { return false }
+        return urlError.code == URLError.Code.cancelled
     }
 }

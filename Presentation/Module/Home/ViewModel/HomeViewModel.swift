@@ -36,10 +36,13 @@ extension HomeViewModel {
     
     struct Output: OutputType {
         let novels: BehaviorRelay<[NovelListModel.Novel]>
+        let networkState: PublishRelay<NetworkState>
+        let error: Observable<Error>
     }
     
     struct State: StateType {
         let novels = BehaviorRelay<[NovelListModel.Novel]>(value: [])
+        let networkState = PublishRelay<NetworkState>()
     }
     
     struct Extra: ExtraType {
@@ -85,8 +88,22 @@ extension HomeViewModel {
             })
             .disposed(by: disposeBag)
         
+        fetchData.state
+            .take(1) // 初回は遅延を入れる
+            .delay(.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind(to: state.networkState)
+            .disposed(by: disposeBag)
+
+        fetchData.state
+            .skip(1) // 2回目移行は普通に出す
+            .bind(to: state.networkState)
+            .disposed(by: disposeBag)
+        
+        
         return Output(
-            novels: state.novels
+            novels: state.novels,
+            networkState: state.networkState,
+            error: fetchData.underlyingError
         )
     }
 }
