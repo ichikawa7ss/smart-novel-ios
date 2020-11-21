@@ -11,7 +11,7 @@ import Domain
 import RxCocoa
 import RxSwift
 
-final class HomeViewController: UIViewController, ShowLoadingView {
+final class HomeViewController: UIViewController, ShowLoadingView, ShowErrorAlertView {
 
     var loadingViewManager = LoadingViewManager()
 
@@ -81,6 +81,14 @@ extension HomeViewController {
             .bind(to: self.rx.networkState)
             .disposed(by: self.disposeBag)
 
+        self.viewModel.output.error
+            .bind(onNext: { error in
+                self.showErrorAlert(error,
+                                    retryHandler: { self.viewModel.input.accept((), for: \.viewWillAppear) },
+                                    closeHandler: {}
+                )
+            }).disposed(by: self.disposeBag)
+        
     }
 }
 

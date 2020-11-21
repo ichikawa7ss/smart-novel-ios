@@ -37,6 +37,7 @@ extension HomeViewModel {
     struct Output: OutputType {
         let novels: BehaviorRelay<[NovelListModel.Novel]>
         let networkState: PublishRelay<NetworkState>
+        let error: Observable<Error>
     }
     
     struct State: StateType {
@@ -101,7 +102,8 @@ extension HomeViewModel {
         
         return Output(
             novels: state.novels,
-            networkState: state.networkState
+            networkState: state.networkState,
+            error: fetchData.underlyingError
         )
     }
 }

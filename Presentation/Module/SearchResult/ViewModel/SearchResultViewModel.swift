@@ -40,6 +40,7 @@ extension SearchResultViewModel {
         let novels: BehaviorRelay<[NovelListModel.Novel]>
         let tapSortsView: PublishRelay<[NovelListModel.Novel.SortField]>
         let networkState: PublishRelay<NetworkState>
+        let error: Observable<Error>
     }
     
     struct State: StateType {
@@ -133,10 +134,17 @@ extension SearchResultViewModel {
             })
             .disposed(by: disposeBag)
         
+        let error = Observable.merge(
+            fetchSpecificTag.underlyingError,
+            fetchDataWithWord.underlyingError,
+            fetchSpecificGenre.underlyingError
+        )
+        
         return Output(
             novels: state.novels,
             tapSortsView: state.tapSortsView,
-            networkState: state.networkState
+            networkState: state.networkState,
+            error: error
         )
     }
 }

@@ -11,7 +11,7 @@ import Domain
 import RxCocoa
 import RxSwift
 
-final class SearchResultViewController: UIViewController, ShowLoadingView {
+final class SearchResultViewController: UIViewController, ShowLoadingView, ShowErrorAlertView {
 
     var loadingViewManager = LoadingViewManager()
 
@@ -76,6 +76,15 @@ extension SearchResultViewController {
         self.viewModel.output.networkState
             .bind(to: self.rx.networkState)
             .disposed(by: self.disposeBag)
+        
+        self.viewModel.output.error
+            .bind(onNext: { error in
+                self.showErrorAlert(
+                    error,
+                    retryHandler: { self.viewModel.input.accept((), for: \.viewWillAppear)},
+                    closeHandler: {}
+                )
+            }).disposed(by: self.disposeBag)
 
     }
 }

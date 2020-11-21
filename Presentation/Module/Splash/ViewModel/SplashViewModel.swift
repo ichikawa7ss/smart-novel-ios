@@ -33,6 +33,7 @@ extension SplashViewModel {
     }
 
     struct Output: OutputType {
+        let error: Observable<Error>
     }
     
     struct State: StateType {
@@ -69,6 +70,7 @@ extension SplashViewModel {
             .disposed(by: disposeBag)
         
         return Output(
+            error: fetchFacetsAction.underlyingError
         )
     }
 }

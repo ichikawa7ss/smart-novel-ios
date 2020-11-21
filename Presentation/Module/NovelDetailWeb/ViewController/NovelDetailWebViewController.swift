@@ -11,7 +11,7 @@ import RxWebKit
 import WebKit
 import Domain
 
-final class NovelDetailWebViewController: UIViewController, ShowLoadingView {
+final class NovelDetailWebViewController: UIViewController, ShowLoadingView, ShowErrorAlertView {
 
     var loadingViewManager = LoadingViewManager()
 
@@ -74,6 +74,38 @@ extension NovelDetailWebViewController {
 extension NovelDetailWebViewController {
 
     private func bindOutput() {
+        
+        // 遷移時にエラーが発生した時
+        self.webView.rx.didFailNavigation
+            .filter { !$2.urlLoadCancelled() }
+            .bind(onNext: { [weak self] args in
+                self?.showErrorAlert(
+                    args.error,
+                    retryHandler: {
+                        args.webView.reload()
+                    },
+                    closeHandler: {}
+                )
+            })
+            .disposed(by: self.disposeBag)
+
+        // ページ読み込み時にエラーが発生した時
+        self.webView.rx.didFailProvisionalNavigation
+            .filter {
+                // webViewではreloadを何度もかけるとリクエストをキャンセルするエラーを発行することがある
+                // このエラーはアラートを出さずに握り潰す
+                !$0.error.urlLoadCancelled()
+            }
+            .bind(onNext: { [weak self] args in
+                self?.showErrorAlert(
+                    args.error,
+                    retryHandler: {
+                        args.webView.reload()
+                    },
+                    closeHandler: {})
+            })
+            .disposed(by: self.disposeBag)
+
     }
 }
 
@@ -95,5 +127,13 @@ extension NovelDetailWebViewController {
                 self.rx.loading.onNext(isLoading)
             })
             .disposed(by: self.disposeBag)
+    }
+}
+
+extension Error {
+
+    func urlLoadCancelled() -> Bool {
+        guard let urlError = self as? URLError else { return false }
+        return urlError.code == URLError.Code.cancelled
     }
 }
