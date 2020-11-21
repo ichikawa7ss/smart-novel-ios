@@ -13,13 +13,16 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gCI-D8-UiN">
-                    <rect key="frame" x="178" y="348" width="37" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gCI-D8-UiN">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                     <color key="color" red="0.96924716229999996" green="0.064876057210000004" blue="0.078770600260000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="gCI-D8-UiN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="SF1-7b-lQx"/>
+                <constraint firstItem="gCI-D8-UiN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XhB-CE-Gg6"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="139" y="110"/>
         </view>

@@ -88,9 +88,16 @@ extension HomeViewModel {
             .disposed(by: disposeBag)
         
         fetchData.state
+            .take(1) // 初回は遅延を入れる
+            .delay(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: state.networkState)
             .disposed(by: disposeBag)
 
+        fetchData.state
+            .skip(1) // 2回目移行は普通に出す
+            .bind(to: state.networkState)
+            .disposed(by: disposeBag)
+        
         
         return Output(
             novels: state.novels,

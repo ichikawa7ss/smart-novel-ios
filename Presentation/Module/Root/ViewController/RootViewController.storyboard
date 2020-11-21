@@ -39,22 +39,15 @@
                                     <constraint firstAttribute="width" constant="150" id="hIq-Os-sDZ"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-Mo-SzN">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="a3a-Mo-SzN" firstAttribute="top" secondItem="IUt-YS-sf0" secondAttribute="top" id="4bv-nk-0kw"/>
                             <constraint firstItem="rwV-NW-Zmk" firstAttribute="centerX" secondItem="IUt-YS-sf0" secondAttribute="trailing" id="Fox-W2-Ecd"/>
                             <constraint firstItem="I8V-Ha-2z2" firstAttribute="top" secondItem="IUt-YS-sf0" secondAttribute="top" id="QXx-EM-Xqj"/>
                             <constraint firstItem="ocb-Rq-set" firstAttribute="trailing" secondItem="I8V-Ha-2z2" secondAttribute="trailing" id="VsF-Jt-hl4"/>
-                            <constraint firstAttribute="trailing" secondItem="a3a-Mo-SzN" secondAttribute="trailing" id="Wyn-5d-qKy"/>
                             <constraint firstItem="ocb-Rq-set" firstAttribute="bottom" secondItem="rwV-NW-Zmk" secondAttribute="centerY" id="Y8s-qw-IEW"/>
                             <constraint firstItem="I8V-Ha-2z2" firstAttribute="leading" secondItem="ocb-Rq-set" secondAttribute="leading" id="cGw-JJ-E5C"/>
                             <constraint firstItem="ocb-Rq-set" firstAttribute="bottom" secondItem="I8V-Ha-2z2" secondAttribute="bottom" id="vKq-1f-geE"/>
-                            <constraint firstAttribute="bottom" secondItem="a3a-Mo-SzN" secondAttribute="bottom" id="yjh-UA-aA1"/>
-                            <constraint firstItem="a3a-Mo-SzN" firstAttribute="leading" secondItem="IUt-YS-sf0" secondAttribute="leading" id="z80-Jl-KZg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ocb-Rq-set"/>
                     </view>
@@ -69,7 +62,4 @@
             <point key="canvasLocation" x="307" y="-254"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="splash" width="375" height="667"/>
-    </resources>
 </document>
