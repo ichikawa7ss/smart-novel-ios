@@ -1,0 +1,18 @@
+//
+//  OptionalType.swift
+//  Presentation
+//
+//  Created by ichikawa on 2020/10/04.
+//
+
+import Foundation
+
+protocol OptionalType {
+    associatedtype Wrapped
+
+    var value: Wrapped? { get }
+}
+
+extension Optional: OptionalType {
+    var value: Wrapped? { return self }
+}
